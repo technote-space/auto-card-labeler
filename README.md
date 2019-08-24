@@ -1,4 +1,4 @@
-# jQuery Marker Animation
+# Auto card labeler
 
 [![Build Status](https://github.com/technote-space/auto-card-labeler/workflows/Build/badge.svg)](https://github.com/technote-space/auto-card-labeler/actions)
 [![Coverage Status](https://coveralls.io/repos/github/technote-space/auto-card-labeler/badge.svg?branch=master)](https://coveralls.io/github/technote-space/auto-card-labeler?branch=master)
