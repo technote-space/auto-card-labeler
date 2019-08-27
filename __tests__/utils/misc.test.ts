@@ -1,7 +1,8 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
 import {encodeContent, getApiFixture} from '../util';
-import {isTargetEvent, parseConfig, getProjectName, getColumnName} from '../../src/utils/misc';
+import {isTargetEvent, parseConfig, getProjectName, getColumnName, getConfigFilename} from '../../src/utils/misc';
+import {DEFAULT_CONFIG_FILENAME} from '../../src/constant';
 
 nock.disableNetConnect();
 
@@ -133,5 +134,28 @@ describe('getColumnName', () => {
             expect(error.status).toBe(404);
         }
         expect(fn).toBeCalled();
+    });
+});
+
+describe('getConfigFilename', () => {
+    const OLD_ENV = process.env;
+
+    beforeEach(() => {
+        jest.resetModules();
+        process.env = {...OLD_ENV};
+        delete process.env.NODE_ENV;
+    });
+
+    afterEach(() => {
+        process.env = OLD_ENV;
+    });
+
+    it('should get config filename', () => {
+        process.env.INPUT_CONFIG_FILENAME = 'test';
+        expect(getConfigFilename()).toBe('test');
+    });
+
+    it('should get default config filename', () => {
+        expect(getConfigFilename()).toBe(DEFAULT_CONFIG_FILENAME);
     });
 });

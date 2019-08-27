@@ -4,9 +4,8 @@ import signale from 'signale';
 import {getConfig} from './utils/config';
 import {getRelatedIssue} from './utils/issue';
 import {getAddLabels, getRemoveLabels} from './utils/label';
-import {isTargetEvent, getProjectName, getColumnName} from './utils/misc';
+import {isTargetEvent, getProjectName, getColumnName, getConfigFilename} from './utils/misc';
 import {addLabels, removeLabels} from './utils/issue';
-import {CONFIG_FILENAME} from './constant';
 
 async function run() {
     try {
@@ -18,10 +17,10 @@ async function run() {
         }
 
         const octokit = new GitHub(getInput('GITHUB_TOKEN', {required: true}));
-        const config = await getConfig(CONFIG_FILENAME, octokit, context);
+        const config = await getConfig(getConfigFilename(), octokit, context);
         if (!Object.keys(config).length) {
             signale.warn('There is no valid config file.');
-            signale.warn(`Please create config file: ${CONFIG_FILENAME}`);
+            signale.warn(`Please create config file: ${getConfigFilename()}`);
             return;
         }
 

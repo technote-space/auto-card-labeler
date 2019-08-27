@@ -5,6 +5,9 @@ inputs:
   GITHUB_TOKEN:
     description: Secret GitHub API token to use for making API requests.
     required: true
+  CONFIG_FILENAME:
+    description: Config file name.
+    default: 'card-labeler.yml'
 runs:
   using: node12
   main: lib/main.js
