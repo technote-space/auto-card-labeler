@@ -1,5 +1,5 @@
 on: pull_request
-name: Add label to PR
+name: Pull Request updated
 jobs:
   triage:
     name: Pull Request Labeler
