@@ -11,8 +11,23 @@ describe('getConfig', () => {
             .reply(200, getConfigFixture());
 
         const config = await getConfig(getConfigFilename(), new GitHub(''), {
+            payload: {
+                action: '',
+            },
+            eventName: '',
+            sha: '',
+            ref: '',
+            workflow: '',
+            action: '',
+            actor: '',
+            issue: {
+                owner: '',
+                repo: '',
+                number: 1,
+            },
             repo: {
-                owner: 'Codertocat', repo: 'Hello-World',
+                owner: 'Codertocat',
+                repo: 'Hello-World',
             },
         });
         expect(config).toHaveProperty('Backlog');
@@ -29,8 +44,23 @@ describe('getConfig', () => {
         const fn = jest.fn();
         try {
             await getConfig(getConfigFilename(), new GitHub(''), {
+                payload: {
+                    action: '',
+                },
+                eventName: '',
+                sha: '',
+                ref: '',
+                workflow: '',
+                action: '',
+                actor: '',
+                issue: {
+                    owner: '',
+                    repo: '',
+                    number: 1,
+                },
                 repo: {
-                    owner: 'Codertocat', repo: 'Hello-World',
+                    owner: 'Codertocat',
+                    repo: 'Hello-World',
                 },
             });
         } catch (error) {
