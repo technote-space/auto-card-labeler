@@ -1,13 +1,17 @@
 import path from 'path';
+import signale from 'signale';
 import {GitHub} from '@actions/github/lib/github';
 import {Context} from '@actions/github/lib/context';
 import {parseConfig} from './misc';
 import {CONFIG_PATH} from '../constant';
 
-export const getConfig: Function = async (fileName: string, octokit: GitHub, context: Context) => parseConfig(
-    (await octokit.repos.getContents({
+export const getConfig: Function = async (fileName: string, octokit: GitHub, context: Context) => {
+    signale.info('Downloading config file: %s', path.posix.join(CONFIG_PATH, fileName));
+
+    const configFile = await octokit.repos.getContents({
         owner: context.repo.owner,
         repo: context.repo.repo,
         path: path.posix.join(CONFIG_PATH, fileName),
-    })).data.content,
-);
+    });
+    return parseConfig(configFile.data.content);
+};
