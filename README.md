@@ -10,3 +10,15 @@ GitHub actions to auto label a pull request or an issue based on project card mo
 ## Screenshot
 
 ## Installation
+.github/workflows/project_card_moved.yml
+```yaml
+on: project_card
+name: Project Card Event
+jobs:
+  triage:
+    name: Auto card labeler
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto card labeler
+        uses: technote-space/auto-card-labeler@v0.0.1
+```
