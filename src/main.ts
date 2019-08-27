@@ -17,12 +17,7 @@ async function run() {
             return;
         }
 
-        if (typeof process.env.GITHUB_TOKEN === 'undefined' || process.env.GITHUB_TOKEN === '') {
-            // noinspection ExceptionCaughtLocallyJS
-            throw new Error(`Input required and not supplied: GITHUB_TOKEN`);
-        }
-
-        const octokit = new GitHub(process.env.GITHUB_TOKEN);
+        const octokit = new GitHub(getInput('GITHUB_TOKEN', {required: true}));
         const config = await getConfig(CONFIG_FILENAME, octokit, context);
         if (!Object.keys(config).length) {
             signale.warn('There is no valid config file.');

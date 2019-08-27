@@ -20,5 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Auto card labeler
-        uses: technote-space/auto-card-labeler@v0.0.1
+        uses: technote-space/auto-card-labeler@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
