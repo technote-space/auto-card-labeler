@@ -1,25 +1,52 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
-import {getRelatedIssue, removeLabels, addLabels} from '../../src/utils/issue';
+import {getRelatedInfo, removeLabels, addLabels} from '../../src/utils/issue';
 import {getApiFixture} from '../util';
 
-describe('getRelatedIssue', () => {
-    it('should get related issue', async () => {
+describe('getRelatedInfo', () => {
+    it('should get related info', async () => {
         nock('https://api.github.com')
             .get('/projects/columns/cards/1')
             .reply(200, getApiFixture('projects.columns.cards'));
 
-        expect(await getRelatedIssue({project_card: {id: 1}}, new GitHub(''))).toBe(123);
+        expect(await getRelatedInfo({project_card: {id: 1}}, new GitHub(''))).toEqual({
+            projectId: 120,
+            issueNumber: 123,
+        });
     });
 
-    it('should not get related issue', async () => {
+    it('should not get related info', async () => {
         nock('https://api.github.com')
             .get('/projects/columns/cards/1')
-            .reply(200, getApiFixture('projects.columns.cards.error'));
+            .reply(200, getApiFixture('projects.columns.cards.error1'));
+
+        expect(await getRelatedInfo({project_card: {id: 1}}, new GitHub(''))).toBeFalsy();
+    });
+
+    it('should throw project error', async () => {
+        nock('https://api.github.com')
+            .get('/projects/columns/cards/1')
+            .reply(200, getApiFixture('projects.columns.cards.error2'));
 
         const fn = jest.fn();
         try {
-            await getRelatedIssue({project_card: {id: 1}}, new GitHub(''));
+            await getRelatedInfo({project_card: {id: 1}}, new GitHub(''));
+        } catch (error) {
+            fn();
+            expect(error).toHaveProperty('message');
+            expect(error.message).toBe('Failed to get project number');
+        }
+        expect(fn).toBeCalled();
+    });
+
+    it('should throw issue error', async () => {
+        nock('https://api.github.com')
+            .get('/projects/columns/cards/1')
+            .reply(200, getApiFixture('projects.columns.cards.error3'));
+
+        const fn = jest.fn();
+        try {
+            await getRelatedInfo({project_card: {id: 1}}, new GitHub(''));
         } catch (error) {
             fn();
             expect(error).toHaveProperty('message');
@@ -35,7 +62,7 @@ describe('getRelatedIssue', () => {
 
         const fn = jest.fn();
         try {
-            await getRelatedIssue({project_card: {id: 1}}, new GitHub(''));
+            await getRelatedInfo({project_card: {id: 1}}, new GitHub(''));
         } catch (error) {
             fn();
             expect(error).toHaveProperty('status');
@@ -65,8 +92,23 @@ describe('removeLabels', () => {
             'remove1',
             'remove2',
         ], new GitHub(''), {
+            payload: {
+                action: '',
+            },
+            eventName: '',
+            sha: '',
+            ref: '',
+            workflow: '',
+            action: '',
+            actor: '',
+            issue: {
+                owner: '',
+                repo: '',
+                number: 1,
+            },
             repo: {
-                owner: 'Codertocat', repo: 'Hello-World',
+                owner: 'Codertocat',
+                repo: 'Hello-World',
             },
         });
 
@@ -96,8 +138,23 @@ describe('addLabels', () => {
             'add1',
             'add2',
         ], new GitHub(''), {
+            payload: {
+                action: '',
+            },
+            eventName: '',
+            sha: '',
+            ref: '',
+            workflow: '',
+            action: '',
+            actor: '',
+            issue: {
+                owner: '',
+                repo: '',
+                number: 1,
+            },
             repo: {
-                owner: 'Codertocat', repo: 'Hello-World',
+                owner: 'Codertocat',
+                repo: 'Hello-World',
             },
         });
 
