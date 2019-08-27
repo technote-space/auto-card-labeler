@@ -10,33 +10,34 @@ GitHub actions to auto label a pull request or an issue based on project card mo
 ## Screenshot
 
 ## Installation
-`.github/workflows/project_card_moved.yml`
-```yaml
-on: project_card
-name: Project Card Event
-jobs:
-  triage:
-    name: Auto card labeler
-    runs-on: ubuntu-latest
-    steps:
-      - name: Auto card labeler
-        uses: technote-space/auto-card-labeler@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
-`.github/card-labeler.yml`
-```yaml
-Project name1:
-  Column name1:
-    - 'Status: test1'
-  Column name2:
-    - 'Status: test2-1'
-    - 'Status: test2-2'
-Project name2:
-  Column name3:
-    - 'Status: test1'
-```
+1. Setup workflow  
+   e.g. `.github/workflows/project_card_moved.yml`
+   ```yaml
+   on: project_card
+   name: Project Card Event
+   jobs:
+     triage:
+       name: Auto card labeler
+       runs-on: ubuntu-latest
+       steps:
+         - name: Auto card labeler
+           uses: technote-space/auto-card-labeler@v1
+           with:
+             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   ```
+1. Setup action setting  
+   e.g. `.github/card-labeler.yml`
+   ```yaml
+   Project name1:
+     Column name1:
+       - 'Status: test1'
+     Column name2:
+       - 'Status: test2-1'
+       - 'Status: test2-2'
+   Project name2:
+     Column name3:
+       - 'Status: test1'
+   ```
 
 ## Behavior
 e.g.
@@ -84,6 +85,12 @@ Project name1:
 ### CONFIG_FILENAME
 Config file name.  
 default: `'card-labeler.yml'`
+
+## Action event details
+### Target event
+- project_card
+### Target action
+- moved
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
