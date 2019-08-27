@@ -10,7 +10,11 @@ describe('getConfig', () => {
             .get(`/repos/Codertocat/Hello-World/contents/.github/${CONFIG_FILENAME}`)
             .reply(200, getConfigFixture());
 
-        const config = await getConfig('Codertocat', 'Hello-World', CONFIG_FILENAME, new GitHub(''));
+        const config = await getConfig(CONFIG_FILENAME, new GitHub(''), {
+            repo: {
+                owner: 'Codertocat', repo: 'Hello-World',
+            },
+        });
         expect(config).toHaveProperty('Backlog');
         expect(config['Backlog']).toHaveProperty('test1');
         expect(typeof config['Backlog']['test1']).toBe('object');
@@ -24,7 +28,11 @@ describe('getConfig', () => {
 
         const fn = jest.fn();
         try {
-            await getConfig('Codertocat', 'Hello-World', CONFIG_FILENAME, new GitHub(''));
+            await getConfig(CONFIG_FILENAME, new GitHub(''), {
+                repo: {
+                    owner: 'Codertocat', repo: 'Hello-World',
+                },
+            });
         } catch (error) {
             fn();
             expect(error).toHaveProperty('status');

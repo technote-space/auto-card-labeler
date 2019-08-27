@@ -1,5 +1,9 @@
 import yaml from 'js-yaml';
 import {GitHub} from '@actions/github/lib/github';
+import {Context} from '@actions/github/lib/context';
+import {TARGET_EVENT_NAME, TARGET_EVENT_ACTION} from '../constant';
+
+export const isTargetEvent = (context: Context) => TARGET_EVENT_NAME === context.eventName && TARGET_EVENT_ACTION === context.payload.action;
 
 export const parseConfig = (content: string) => yaml.safeLoad(Buffer.from(content, 'base64').toString()) || {};
 
