@@ -80,6 +80,11 @@ Project name1:
    - Current Labels
      - `Status: test1`
 
+## Options
+### CONFIG_FILENAME
+Config file name.  
+default: `'card-labeler.yml'`
+
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
 [Blog](https://technote.space)
