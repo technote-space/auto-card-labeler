@@ -14,7 +14,7 @@ export const getRelatedIssue: Function = async (payload: object, octokit: GitHub
     return parseInt(match[1]);
 };
 
-export const addLabels: Function = async (issue: number, labels: string[], octokit: GitHub, context: Context) => {
+export const addLabels = async (issue: number, labels: string[], octokit: GitHub, context: Context) => {
     signale.info('Adding labels');
 
     await octokit.issues.addLabels({
@@ -25,7 +25,7 @@ export const addLabels: Function = async (issue: number, labels: string[], octok
     });
 };
 
-export const removeLabels: Function = async (issue: number, labels: string[], octokit: GitHub, context: Context) => {
+export const removeLabels = async (issue: number, labels: string[], octokit: GitHub, context: Context) => {
     signale.info('Removing labels');
 
     await Promise.all(labels.map(label => octokit.issues.removeLabel({
