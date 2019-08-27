@@ -10,7 +10,7 @@ GitHub actions to auto label a pull request or an issue based on project card mo
 ## Screenshot
 
 ## Installation
-.github/workflows/project_card_moved.yml
+`.github/workflows/project_card_moved.yml`
 ```yaml
 on: project_card
 name: Project Card Event
@@ -24,3 +24,62 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+`.github/card-labeler.yml`
+```yaml
+Project name1:
+  Column name1:
+    - 'Status: test1'
+  Column name2:
+    - 'Status: test2-1'
+    - 'Status: test2-2'
+Project name2:
+  Column name3:
+    - 'Status: test1'
+```
+
+## Behavior
+e.g.
+```yaml
+Project name1:
+  Column name1:
+    - 'Status: test1'
+  Column name2:
+    - 'Status: test2-1'
+    - 'Status: test2-2'
+```
+1. Card created (`Column name1`)
+   - Add
+     - `Status: test1`
+   - Remove
+     - None
+   - Current Labels
+     - `Status: test1`
+1. Card moved to `Column name2`
+   - Add
+     - `Status: test2-1`
+     - `Status: test2-2`
+   - Remove
+     - `Status: test1`
+   - Current Labels
+     - `Status: test2-1`
+     - `Status: test2-2`
+1. Card moved to `Column name3`
+   - Add
+     - None
+   - Remove
+     - `Status: test2-1`
+     - `Status: test2-2`
+   - Current Labels
+     - None
+1. Card moved to `Column name1`
+   - Add
+     - `Status: test1`
+   - Remove
+     - None
+   - Current Labels
+     - `Status: test1`
+
+## Author
+[GitHub (Technote)](https://github.com/technote-space)  
+[Blog](https://technote.space)
