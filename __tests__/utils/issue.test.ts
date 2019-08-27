@@ -1,6 +1,6 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
-import {getRelatedInfo, removeLabels, addLabels} from '../../src/utils/issue';
+import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
 import {getApiFixture} from '../util';
 
 describe('getRelatedInfo', () => {
@@ -69,6 +69,35 @@ describe('getRelatedInfo', () => {
             expect(error.status).toBe(404);
         }
         expect(fn).toBeCalled();
+    });
+});
+
+describe('getLabels', () => {
+    it('should get labels', async () => {
+        nock('https://api.github.com')
+            .get('/repos/Codertocat/Hello-World/issues/1/labels')
+            .reply(200, getApiFixture('repos.issues.labels'));
+
+        expect(await getLabels(1, new GitHub(''), {
+            payload: {
+                action: '',
+            },
+            eventName: '',
+            sha: '',
+            ref: '',
+            workflow: '',
+            action: '',
+            actor: '',
+            issue: {
+                owner: '',
+                repo: '',
+                number: 1,
+            },
+            repo: {
+                owner: 'Codertocat',
+                repo: 'Hello-World',
+            },
+        })).toEqual(['bug', 'enhancement']);
     });
 });
 
