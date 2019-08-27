@@ -26,8 +26,8 @@ async function run() {
 
         const project = await getProjectName(context.payload.project_card.id, octokit);
         const column = await getColumnName(context.payload.project_card.column_id, octokit);
-        signale.info(`Target project: ${project}`);
-        signale.info(`Target column: ${column}`);
+        signale.info(`Target project name: ${project}`);
+        signale.info(`Target column name: ${column}`);
 
         const labelsToRemove = getRemoveLabels(project, column, config);
         const labelsToAdd = getAddLabels(project, column, config);

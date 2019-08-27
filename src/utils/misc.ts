@@ -10,14 +10,14 @@ export const isTargetEvent = (context: Context) => TARGET_EVENT_NAME === context
 export const parseConfig = (content: string) => yaml.safeLoad(Buffer.from(content, 'base64').toString()) || {};
 
 export const getProjectName = async (projectId: number, octokit: GitHub) => {
-    signale.info('Getting project name');
+    signale.info('Getting project name: %d', projectId);
 
     const {data: {name}} = await octokit.projects.get({project_id: projectId});
     return name;
 };
 
 export const getColumnName = async (columnId: number, octokit: GitHub) => {
-    signale.info('Getting column name');
+    signale.info('Getting column name: %d', columnId);
 
     const {data: {name}} = await octokit.projects.getColumn({column_id: columnId});
     return name;
