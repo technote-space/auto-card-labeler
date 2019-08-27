@@ -1,9 +1,80 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
 import {encodeContent, getApiFixture} from '../util';
-import {parseConfig, getProjectName, getColumnName} from '../../src/utils/misc';
+import {isTargetEvent, parseConfig, getProjectName, getColumnName} from '../../src/utils/misc';
 
 nock.disableNetConnect();
+
+describe('isTargetEvent', () => {
+    it('should return true', () => {
+        expect(isTargetEvent({
+            payload: {
+                action: 'moved',
+            },
+            eventName: 'project_card',
+            sha: '',
+            ref: '',
+            workflow: '',
+            action: '',
+            actor: '',
+            issue: {
+                owner: '',
+                repo: '',
+                number: 1,
+            },
+            repo: {
+                owner: '',
+                repo: '',
+            },
+        })).toBeTruthy();
+    });
+
+    it('should return false', () => {
+        expect(isTargetEvent({
+            payload: {
+                action: 'moved',
+            },
+            eventName: 'push',
+            sha: '',
+            ref: '',
+            workflow: '',
+            action: '',
+            actor: '',
+            issue: {
+                owner: '',
+                repo: '',
+                number: 1,
+            },
+            repo: {
+                owner: '',
+                repo: '',
+            },
+        })).toBeFalsy();
+    });
+
+    it('should return false', () => {
+        expect(isTargetEvent({
+            payload: {
+                action: 'created',
+            },
+            eventName: 'project_card',
+            sha: '',
+            ref: '',
+            workflow: '',
+            action: '',
+            actor: '',
+            issue: {
+                owner: '',
+                repo: '',
+                number: 1,
+            },
+            repo: {
+                owner: '',
+                repo: '',
+            },
+        })).toBeFalsy();
+    });
+});
 
 describe('parseConfig', () => {
     it('should parse config', async () => {

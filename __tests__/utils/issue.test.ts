@@ -61,10 +61,14 @@ describe('removeLabels', () => {
                 return body;
             });
 
-        await removeLabels('Codertocat', 'Hello-World', 1, [
+        await removeLabels(1, [
             'remove1',
             'remove2',
-        ], new GitHub(''));
+        ], new GitHub(''), {
+            repo: {
+                owner: 'Codertocat', repo: 'Hello-World',
+            },
+        });
 
         expect(fn1).toBeCalledTimes(1);
         expect(fn2).toBeCalledTimes(1);
@@ -88,10 +92,14 @@ describe('addLabels', () => {
                 return body;
             });
 
-        await addLabels('Codertocat', 'Hello-World', 1, [
+        await addLabels(1, [
             'add1',
             'add2',
-        ], new GitHub(''));
+        ], new GitHub(''), {
+            repo: {
+                owner: 'Codertocat', repo: 'Hello-World',
+            },
+        });
 
         expect(fn1).toBeCalledTimes(1);
         expect(fn2).toBeCalledTimes(1);
