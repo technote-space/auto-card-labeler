@@ -8,14 +8,14 @@
     "github",
     "github actions"
   ],
-  "homepage": "https://github.com/technote-space/test-github-actions",
+  "homepage": "https://github.com/technote-space/auto-card-labeler",
   "repository": {
     "type": "git",
-    "url": "https://github.com/technote-space/test-github-actions.git",
+    "url": "https://github.com/technote-space/auto-card-labeler.git",
     "directory": "automations/auto-card-labeler"
   },
   "bugs": {
-    "url": "https://github.com/technote-space/test-github-actions/issues"
+    "url": "https://github.com/technote-space/auto-card-labeler/issues"
   },
   "main": "lib/main.js",
   "dependencies": {

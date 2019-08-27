@@ -1,7 +1,7 @@
 # Contributing
-[issues]: https://github.com/technote-space/jquery.marker-animation/issues
-[fork]: https://github.com/technote-space/jquery.marker-animation/fork
-[pr]: https://github.com/technote-space/jquery.marker-animation/compare
+[issues]: https://github.com/technote-space/auto-card-labeler/issues
+[fork]: https://github.com/technote-space/auto-card-labeler/fork
+[pr]: https://github.com/technote-space/auto-card-labeler/compare
 [jest]: https://jestjs.io/
 [code-of-conduct]: CODE_OF_CONDUCT.md
 
