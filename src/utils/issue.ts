@@ -33,6 +33,16 @@ const extractIssueNumber = (url: string): number => {
     return parseInt(match[1], 10);
 };
 
+export const getLabels = async (issue: number, octokit: GitHub, context: Context): Promise<string[]> => {
+    signale.info('Getting current labels');
+
+    return (await octokit.issues.listLabelsOnIssue({
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        issue_number: issue,
+    })).data.map(label => label.name);
+};
+
 export const addLabels = async (issue: number, labels: string[], octokit: GitHub, context: Context) => {
     signale.info('Adding labels');
 

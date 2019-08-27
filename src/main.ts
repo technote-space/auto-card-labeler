@@ -5,7 +5,7 @@ import {getConfig} from './utils/config';
 import {getRelatedInfo} from './utils/issue';
 import {getAddLabels, getRemoveLabels} from './utils/label';
 import {isTargetEvent, getProjectName, getColumnName, getConfigFilename} from './utils/misc';
-import {addLabels, removeLabels} from './utils/issue';
+import {getLabels, addLabels, removeLabels} from './utils/issue';
 
 async function run() {
     try {
@@ -36,8 +36,9 @@ async function run() {
         signale.info(`Target project name: ${project}`);
         signale.info(`Target column name: ${column}`);
 
-        const labelsToRemove = getRemoveLabels(project, column, config);
-        const labelsToAdd = getAddLabels(project, column, config);
+        const currentLabels = await getLabels(issueNumber, octokit, context);
+        const labelsToRemove = getRemoveLabels(currentLabels, project, column, config);
+        const labelsToAdd = getAddLabels(currentLabels, project, column, config);
         if (labelsToRemove.length) {
             await removeLabels(issueNumber, labelsToRemove, octokit, context);
         }
