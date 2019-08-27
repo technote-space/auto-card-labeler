@@ -2,7 +2,7 @@ import {setFailed, getInput} from '@actions/core' ;
 import {context, GitHub} from '@actions/github' ;
 import signale from 'signale';
 import {getConfig} from './utils/config';
-import {getRelatedIssue} from './utils/issue';
+import {getRelatedInfo} from './utils/issue';
 import {getAddLabels, getRemoveLabels} from './utils/label';
 import {isTargetEvent, getProjectName, getColumnName, getConfigFilename} from './utils/misc';
 import {addLabels, removeLabels} from './utils/issue';
@@ -24,19 +24,25 @@ async function run() {
             return;
         }
 
-        const project = await getProjectName(context.payload.project_card.id, octokit);
+        const info = await getRelatedInfo(context.payload, octokit);
+        if ('boolean' === typeof info) {
+            signale.warn('There card is not related with issue.');
+            return;
+        }
+
+        const {projectId, issueNumber} = info;
+        const project = await getProjectName(projectId, octokit);
         const column = await getColumnName(context.payload.project_card.column_id, octokit);
-        signale.info(`Target project: ${project}`);
-        signale.info(`Target column: ${column}`);
+        signale.info(`Target project name: ${project}`);
+        signale.info(`Target column name: ${column}`);
 
         const labelsToRemove = getRemoveLabels(project, column, config);
         const labelsToAdd = getAddLabels(project, column, config);
-        const issue = getRelatedIssue(context.payload, octokit);
         if (labelsToRemove.length) {
-            await removeLabels(issue, labelsToRemove, octokit, context);
+            await removeLabels(issueNumber, labelsToRemove, octokit, context);
         }
         if (labelsToAdd.length) {
-            await addLabels(issue, labelsToAdd, octokit, context);
+            await addLabels(issueNumber, labelsToAdd, octokit, context);
         }
 
         signale.success(`Removed: ${labelsToRemove.length}`);
