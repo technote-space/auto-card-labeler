@@ -22,7 +22,7 @@ const extractProjectNumber = (url: string): number => {
     if (!match) {
         throw new Error('Failed to get project number');
     }
-    return parseInt(match[1]);
+    return parseInt(match[1], 10);
 };
 
 const extractIssueNumber = (url: string): number => {
@@ -30,7 +30,7 @@ const extractIssueNumber = (url: string): number => {
     if (!match) {
         throw new Error('Failed to get issue number');
     }
-    return parseInt(match[1]);
+    return parseInt(match[1], 10);
 };
 
 export const addLabels = async (issue: number, labels: string[], octokit: GitHub, context: Context) => {
