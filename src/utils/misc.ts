@@ -1,3 +1,4 @@
+import fs from 'fs';
 import yaml from 'js-yaml';
 import signale from 'signale';
 import {getInput} from '@actions/core' ;
@@ -24,3 +25,16 @@ export const getColumnName = async (columnId: number, octokit: GitHub): Promise<
 };
 
 export const getConfigFilename = (): string => getInput('CONFIG_FILENAME') || DEFAULT_CONFIG_FILENAME;
+
+export const getBuildVersion = (filepath: string): string | boolean => {
+    if (!fs.existsSync(filepath)) {
+        return false;
+    }
+
+    const json = JSON.parse(fs.readFileSync(filepath, 'utf8'));
+    if (json && 'tagName' in json) {
+        return json['tagName'];
+    }
+
+    return false;
+};

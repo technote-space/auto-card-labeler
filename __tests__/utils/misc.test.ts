@@ -1,7 +1,8 @@
 import nock from 'nock';
+import path from "path";
 import {GitHub} from '@actions/github' ;
 import {encodeContent, getApiFixture} from '../util';
-import {isTargetEvent, parseConfig, getProjectName, getColumnName, getConfigFilename} from '../../src/utils/misc';
+import {isTargetEvent, parseConfig, getProjectName, getColumnName, getConfigFilename, getBuildVersion} from '../../src/utils/misc';
 import {DEFAULT_CONFIG_FILENAME} from '../../src/constant';
 
 nock.disableNetConnect();
@@ -157,5 +158,19 @@ describe('getConfigFilename', () => {
 
     it('should get default config filename', () => {
         expect(getConfigFilename()).toBe(DEFAULT_CONFIG_FILENAME);
+    });
+});
+
+describe('getBuildVersion', () => {
+    it('should get build version', () => {
+        expect(getBuildVersion(path.resolve(__dirname, '..', 'fixtures', 'build1.json'))).toBe('v1.2.3');
+    });
+
+    it('should return false 1', () => {
+        expect(getBuildVersion(path.resolve(__dirname, '..', 'fixtures', 'build2.json'))).toBeFalsy();
+    });
+
+    it('should return false 2', () => {
+        expect(getBuildVersion(path.resolve(__dirname, '..', 'fixtures', 'build.test.json'))).toBeFalsy();
     });
 });
