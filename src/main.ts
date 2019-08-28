@@ -9,8 +9,8 @@ import {getLabels, addLabels, removeLabels} from './utils/issue';
 
 async function run() {
     try {
-        signale.info(`Event: ${context.eventName}`);
-        signale.info(`Action: ${context.action}`);
+        signale.info('Event: %s', context.eventName);
+        signale.info('Action: %s', context.payload.action);
         if (!isTargetEvent(context)) {
             signale.info('This is not target event.');
             return;
@@ -20,7 +20,7 @@ async function run() {
         const config = await getConfig(getConfigFilename(), octokit, context);
         if (!Object.keys(config).length) {
             signale.warn('There is no valid config file.');
-            signale.warn(`Please create config file: ${getConfigFilename()}`);
+            signale.warn('Please create config file: %s', getConfigFilename());
             return;
         }
 
@@ -33,8 +33,8 @@ async function run() {
         const {projectId, issueNumber} = info;
         const project = await getProjectName(projectId, octokit);
         const column = await getColumnName(context.payload.project_card.column_id, octokit);
-        signale.info(`Target project name: ${project}`);
-        signale.info(`Target column name: ${column}`);
+        signale.info('Target project name: %s', project);
+        signale.info('Target column name: %s', column);
 
         const currentLabels = await getLabels(issueNumber, octokit, context);
         const labelsToRemove = getRemoveLabels(currentLabels, project, column, config);
@@ -46,8 +46,8 @@ async function run() {
             await addLabels(issueNumber, labelsToAdd, octokit, context);
         }
 
-        signale.success(`Removed: ${labelsToRemove.length}`);
-        signale.success(`Added: ${labelsToAdd.length}`);
+        signale.success('Removed: %d', labelsToRemove.length);
+        signale.success('Added: %d', labelsToAdd.length);
     } catch (error) {
         setFailed(error.message);
     }
