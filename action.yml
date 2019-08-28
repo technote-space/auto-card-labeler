@@ -8,6 +8,9 @@ inputs:
   CONFIG_FILENAME:
     description: Config file name.
     default: 'card-labeler.yml'
+branding:
+  icon: 'tag'
+  color: 'blue'
 runs:
   using: node12
   main: lib/main.js
