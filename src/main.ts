@@ -1,14 +1,19 @@
 import {setFailed, getInput} from '@actions/core' ;
 import {context, GitHub} from '@actions/github' ;
+import path from 'path';
 import signale from 'signale';
 import {getConfig} from './utils/config';
 import {getRelatedInfo} from './utils/issue';
 import {getAddLabels, getRemoveLabels} from './utils/label';
-import {isTargetEvent, getProjectName, getColumnName, getConfigFilename} from './utils/misc';
+import {isTargetEvent, getProjectName, getColumnName, getConfigFilename, getBuildVersion} from './utils/misc';
 import {getLabels, addLabels, removeLabels} from './utils/issue';
 
 async function run() {
     try {
+        const version = getBuildVersion(path.resolve(__dirname, '..', 'build.json'));
+        if ('string' === typeof version) {
+            signale.info('Version: %s', version);
+        }
         signale.info('Event: %s', context.eventName);
         signale.info('Action: %s', context.payload.action);
         if (!isTargetEvent(context)) {
