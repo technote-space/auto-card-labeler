@@ -8,6 +8,7 @@
 GitHub actions to auto label a pull request or an issue based on project card move.
 
 ## Screenshot
+![GitHub Action](https://raw.githubusercontent.com/technote-space/auto-card-labeler/images/screenshot.gif)
 
 ## Installation
 1. Setup workflow  
