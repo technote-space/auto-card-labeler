@@ -1,78 +1,36 @@
 import nock from 'nock';
 import path from 'path';
 import {GitHub} from '@actions/github' ;
-import {disableNetConnect, encodeContent, getApiFixture} from '../util';
+import {disableNetConnect, encodeContent, getApiFixture, getContext} from '../util';
 import {isTargetEvent, parseConfig, getProjectName, getColumnName, getConfigFilename, getBuildVersion} from '../../src/utils/misc';
 import {DEFAULT_CONFIG_FILENAME} from '../../src/constant';
 
 describe('isTargetEvent', () => {
     it('should return true', () => {
-        expect(isTargetEvent({
+        expect(isTargetEvent(getContext({
             payload: {
                 action: 'moved',
             },
             eventName: 'project_card',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
-            repo: {
-                owner: '',
-                repo: '',
-            },
-        })).toBeTruthy();
+        }))).toBeTruthy();
     });
 
     it('should return false', () => {
-        expect(isTargetEvent({
+        expect(isTargetEvent(getContext({
             payload: {
                 action: 'moved',
             },
             eventName: 'push',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
-            repo: {
-                owner: '',
-                repo: '',
-            },
-        })).toBeFalsy();
+        }))).toBeFalsy();
     });
 
     it('should return false', () => {
-        expect(isTargetEvent({
+        expect(isTargetEvent(getContext({
             payload: {
                 action: 'created',
             },
             eventName: 'project_card',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
-            repo: {
-                owner: '',
-                repo: '',
-            },
-        })).toBeFalsy();
+        }))).toBeFalsy();
     });
 });
 

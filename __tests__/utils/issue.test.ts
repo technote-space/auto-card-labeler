@@ -1,7 +1,7 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
 import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
-import {disableNetConnect, getApiFixture} from '../util';
+import {disableNetConnect, getApiFixture, getContext} from '../util';
 
 describe('getRelatedInfo', () => {
     disableNetConnect(nock);
@@ -82,26 +82,12 @@ describe('getLabels', () => {
             .get('/repos/Codertocat/Hello-World/issues/1/labels')
             .reply(200, getApiFixture('repos.issues.labels'));
 
-        expect(await getLabels(1, new GitHub(''), {
-            payload: {
-                action: '',
-            },
-            eventName: '',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
+        expect(await getLabels(1, new GitHub(''), getContext({
             repo: {
                 owner: 'Codertocat',
                 repo: 'Hello-World',
             },
-        })).toEqual(['bug', 'enhancement']);
+        }))).toEqual(['bug', 'enhancement']);
     });
 });
 
@@ -126,26 +112,12 @@ describe('removeLabels', () => {
         await removeLabels(1, [
             'remove1',
             'remove2',
-        ], new GitHub(''), {
-            payload: {
-                action: '',
-            },
-            eventName: '',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
+        ], new GitHub(''), getContext({
             repo: {
                 owner: 'Codertocat',
                 repo: 'Hello-World',
             },
-        });
+        }));
 
         expect(fn1).toBeCalledTimes(1);
         expect(fn2).toBeCalledTimes(1);
@@ -174,26 +146,12 @@ describe('addLabels', () => {
         await addLabels(1, [
             'add1',
             'add2',
-        ], new GitHub(''), {
-            payload: {
-                action: '',
-            },
-            eventName: '',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
+        ], new GitHub(''), getContext({
             repo: {
                 owner: 'Codertocat',
                 repo: 'Hello-World',
             },
-        });
+        }));
 
         expect(fn1).toBeCalledTimes(1);
         expect(fn2).toBeCalledTimes(1);

@@ -31,6 +31,27 @@ export const getApiFixture = (name: string) => JSON.parse(fs.readFileSync(path.r
 
 export const encodeContent = (content: string) => Buffer.from(content).toString('base64');
 
+export const getContext = (override: object) => Object.assign({
+    payload: {
+        action: '',
+    },
+    eventName: '',
+    sha: '',
+    ref: '',
+    workflow: '',
+    action: '',
+    actor: '',
+    issue: {
+        owner: '',
+        repo: '',
+        number: 1,
+    },
+    repo: {
+        owner: '',
+        repo: '',
+    },
+}, override);
+
 export const disableNetConnect = nock => {
     beforeEach(() => {
         nock.disableNetConnect();
