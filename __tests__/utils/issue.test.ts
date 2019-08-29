@@ -3,6 +3,8 @@ import {GitHub} from '@actions/github' ;
 import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
 import {getApiFixture} from '../util';
 
+nock.disableNetConnect();
+
 describe('getRelatedInfo', () => {
     it('should get related info', async () => {
         nock('https://api.github.com')

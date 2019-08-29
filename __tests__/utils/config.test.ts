@@ -4,6 +4,8 @@ import {getConfig} from '../../src/utils/config';
 import {getConfigFixture} from '../util';
 import {getConfigFilename} from '../../src/utils/misc';
 
+nock.disableNetConnect();
+
 describe('getConfig', () => {
     it('should get config', async () => {
         nock('https://api.github.com')
