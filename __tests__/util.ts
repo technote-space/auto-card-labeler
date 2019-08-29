@@ -30,3 +30,14 @@ export const getConfigFixture = (fileName: string = 'config.yml') => ({
 export const getApiFixture = (name: string) => JSON.parse(fs.readFileSync(path.resolve(__dirname, `./fixtures/${name}.json`)));
 
 export const encodeContent = (content: string) => Buffer.from(content).toString('base64');
+
+export const disableNetConnect = nock => {
+    beforeEach(() => {
+        nock.disableNetConnect();
+    });
+
+    afterEach(() => {
+        nock.cleanAll();
+        nock.enableNetConnect();
+    });
+};

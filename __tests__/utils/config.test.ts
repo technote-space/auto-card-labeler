@@ -1,12 +1,12 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
 import {getConfig} from '../../src/utils/config';
-import {getConfigFixture} from '../util';
+import {disableNetConnect, getConfigFixture} from '../util';
 import {getConfigFilename} from '../../src/utils/misc';
 
-nock.disableNetConnect();
-
 describe('getConfig', () => {
+    disableNetConnect(nock);
+
     it('should get config', async () => {
         nock('https://api.github.com')
             .get(`/repos/Codertocat/Hello-World/contents/.github/${getConfigFilename()}`)

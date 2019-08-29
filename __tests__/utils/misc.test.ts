@@ -1,11 +1,9 @@
 import nock from 'nock';
-import path from "path";
+import path from 'path';
 import {GitHub} from '@actions/github' ;
-import {encodeContent, getApiFixture} from '../util';
+import {disableNetConnect, encodeContent, getApiFixture} from '../util';
 import {isTargetEvent, parseConfig, getProjectName, getColumnName, getConfigFilename, getBuildVersion} from '../../src/utils/misc';
 import {DEFAULT_CONFIG_FILENAME} from '../../src/constant';
-
-nock.disableNetConnect();
 
 describe('isTargetEvent', () => {
     it('should return true', () => {
@@ -87,6 +85,8 @@ describe('parseConfig', () => {
 });
 
 describe('getProjectName', () => {
+    disableNetConnect(nock);
+
     it('should return project name', async () => {
         nock('https://api.github.com')
             .get('/projects/1')
@@ -113,6 +113,8 @@ describe('getProjectName', () => {
 });
 
 describe('getColumnName', () => {
+    disableNetConnect(nock);
+
     it('should return column name', async () => {
         nock('https://api.github.com')
             .get('/projects/columns/1')

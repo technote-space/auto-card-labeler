@@ -1,11 +1,11 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
 import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
-import {getApiFixture} from '../util';
-
-nock.disableNetConnect();
+import {disableNetConnect, getApiFixture} from '../util';
 
 describe('getRelatedInfo', () => {
+    disableNetConnect(nock);
+
     it('should get related info', async () => {
         nock('https://api.github.com')
             .get('/projects/columns/cards/1')
@@ -75,6 +75,8 @@ describe('getRelatedInfo', () => {
 });
 
 describe('getLabels', () => {
+    disableNetConnect(nock);
+
     it('should get labels', async () => {
         nock('https://api.github.com')
             .get('/repos/Codertocat/Hello-World/issues/1/labels')
@@ -104,6 +106,8 @@ describe('getLabels', () => {
 });
 
 describe('removeLabels', () => {
+    disableNetConnect(nock);
+
     it('should remove labels', async () => {
         const fn1 = jest.fn();
         const fn2 = jest.fn();
@@ -149,6 +153,8 @@ describe('removeLabels', () => {
 });
 
 describe('addLabels', () => {
+    disableNetConnect(nock);
+
     it('should add labels', async () => {
         const fn1 = jest.fn();
         const fn2 = jest.fn();
