@@ -1,35 +1,23 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
 import {getConfig} from '../../src/utils/config';
-import {getConfigFixture} from '../util';
+import {disableNetConnect, getConfigFixture, getContext} from '../util';
 import {getConfigFilename} from '../../src/utils/misc';
 
 describe('getConfig', () => {
+    disableNetConnect(nock);
+
     it('should get config', async () => {
         nock('https://api.github.com')
             .get(`/repos/Codertocat/Hello-World/contents/.github/${getConfigFilename()}`)
             .reply(200, getConfigFixture());
 
-        const config = await getConfig(getConfigFilename(), new GitHub(''), {
-            payload: {
-                action: '',
-            },
-            eventName: '',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
+        const config = await getConfig(getConfigFilename(), new GitHub(''), getContext({
             repo: {
                 owner: 'Codertocat',
                 repo: 'Hello-World',
             },
-        });
+        }));
         expect(config).toHaveProperty('Backlog');
         expect(config['Backlog']).toHaveProperty('test1');
         expect(typeof config['Backlog']['test1']).toBe('object');
@@ -43,26 +31,12 @@ describe('getConfig', () => {
 
         const fn = jest.fn();
         try {
-            await getConfig(getConfigFilename(), new GitHub(''), {
-                payload: {
-                    action: '',
-                },
-                eventName: '',
-                sha: '',
-                ref: '',
-                workflow: '',
-                action: '',
-                actor: '',
-                issue: {
-                    owner: '',
-                    repo: '',
-                    number: 1,
-                },
+            await getConfig(getConfigFilename(), new GitHub(''), getContext({
                 repo: {
                     owner: 'Codertocat',
                     repo: 'Hello-World',
                 },
-            });
+            }));
         } catch (error) {
             fn();
             expect(error).toHaveProperty('status');

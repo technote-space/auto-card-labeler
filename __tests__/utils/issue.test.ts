@@ -1,9 +1,11 @@
 import nock from 'nock';
 import {GitHub} from '@actions/github' ;
 import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
-import {getApiFixture} from '../util';
+import {disableNetConnect, getApiFixture, getContext} from '../util';
 
 describe('getRelatedInfo', () => {
+    disableNetConnect(nock);
+
     it('should get related info', async () => {
         nock('https://api.github.com')
             .get('/projects/columns/cards/1')
@@ -73,35 +75,25 @@ describe('getRelatedInfo', () => {
 });
 
 describe('getLabels', () => {
+    disableNetConnect(nock);
+
     it('should get labels', async () => {
         nock('https://api.github.com')
             .get('/repos/Codertocat/Hello-World/issues/1/labels')
             .reply(200, getApiFixture('repos.issues.labels'));
 
-        expect(await getLabels(1, new GitHub(''), {
-            payload: {
-                action: '',
-            },
-            eventName: '',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
+        expect(await getLabels(1, new GitHub(''), getContext({
             repo: {
                 owner: 'Codertocat',
                 repo: 'Hello-World',
             },
-        })).toEqual(['bug', 'enhancement']);
+        }))).toEqual(['bug', 'enhancement']);
     });
 });
 
 describe('removeLabels', () => {
+    disableNetConnect(nock);
+
     it('should remove labels', async () => {
         const fn1 = jest.fn();
         const fn2 = jest.fn();
@@ -120,26 +112,12 @@ describe('removeLabels', () => {
         await removeLabels(1, [
             'remove1',
             'remove2',
-        ], new GitHub(''), {
-            payload: {
-                action: '',
-            },
-            eventName: '',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
+        ], new GitHub(''), getContext({
             repo: {
                 owner: 'Codertocat',
                 repo: 'Hello-World',
             },
-        });
+        }));
 
         expect(fn1).toBeCalledTimes(1);
         expect(fn2).toBeCalledTimes(1);
@@ -147,6 +125,8 @@ describe('removeLabels', () => {
 });
 
 describe('addLabels', () => {
+    disableNetConnect(nock);
+
     it('should add labels', async () => {
         const fn1 = jest.fn();
         const fn2 = jest.fn();
@@ -166,26 +146,12 @@ describe('addLabels', () => {
         await addLabels(1, [
             'add1',
             'add2',
-        ], new GitHub(''), {
-            payload: {
-                action: '',
-            },
-            eventName: '',
-            sha: '',
-            ref: '',
-            workflow: '',
-            action: '',
-            actor: '',
-            issue: {
-                owner: '',
-                repo: '',
-                number: 1,
-            },
+        ], new GitHub(''), getContext({
             repo: {
                 owner: 'Codertocat',
                 repo: 'Hello-World',
             },
-        });
+        }));
 
         expect(fn1).toBeCalledTimes(1);
         expect(fn2).toBeCalledTimes(1);

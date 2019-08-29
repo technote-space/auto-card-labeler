@@ -4,9 +4,9 @@ import signale from 'signale';
 import {getInput} from '@actions/core' ;
 import {GitHub} from '@actions/github/lib/github';
 import {Context} from '@actions/github/lib/context';
-import {TARGET_EVENT_NAME, TARGET_EVENT_ACTION, DEFAULT_CONFIG_FILENAME} from '../constant';
+import {TARGET_EVENTS, DEFAULT_CONFIG_FILENAME} from '../constant';
 
-export const isTargetEvent = (context: Context): boolean => TARGET_EVENT_NAME === context.eventName && TARGET_EVENT_ACTION === context.payload.action;
+export const isTargetEvent = (context: Context): boolean => 'string' === typeof context.payload.action && context.eventName in TARGET_EVENTS && TARGET_EVENTS[context.eventName] === context.payload.action;
 
 export const parseConfig = (content: string): object => yaml.safeLoad(Buffer.from(content, 'base64').toString()) || {};
 
