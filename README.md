@@ -109,6 +109,12 @@ default: `'card-labeler.yml'`
 ### Target action
 - moved
 
+## GitHub Actions using this Action
+- [Auto card labeler](https://github.com/technote-space/auto-card-labeler)
+- [TOC Generator](https://github.com/technote-space/toc-generator)
+- [Release GitHub Actions](https://github.com/technote-space/release-github-actions)
+- [Assign Author](https://github.com/technote-space/assign-author)
+
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
 [Blog](https://technote.space)
