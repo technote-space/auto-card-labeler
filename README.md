@@ -7,6 +7,23 @@
 
 GitHub actions to auto label a pull request or an issue based on project card move.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Screenshot](#screenshot)
+- [Installation](#installation)
+- [Behavior](#behavior)
+- [Options](#options)
+  - [CONFIG_FILENAME](#config_filename)
+- [Action event details](#action-event-details)
+  - [Target event](#target-event)
+  - [Target action](#target-action)
+- [GitHub Actions using this Action](#github-actions-using-this-action)
+- [Author](#author)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Screenshot
 ![GitHub Action](https://raw.githubusercontent.com/technote-space/auto-card-labeler/images/screenshot.gif)
 
@@ -92,6 +109,12 @@ default: `'card-labeler.yml'`
 - project_card
 ### Target action
 - moved
+
+## GitHub Actions using this Action
+- [Auto card labeler](https://github.com/technote-space/auto-card-labeler)
+- [TOC Generator](https://github.com/technote-space/toc-generator)
+- [Release GitHub Actions](https://github.com/technote-space/release-github-actions)
+- [Assign Author](https://github.com/technote-space/assign-author)
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
