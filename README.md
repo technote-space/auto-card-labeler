@@ -19,6 +19,7 @@ GitHub actions to auto label a pull request or an issue based on project card mo
 - [Action event details](#action-event-details)
   - [Target event](#target-event)
   - [Target action](#target-action)
+- [GitHub Actions using this Action](#github-actions-using-this-action)
 - [Author](#author)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
