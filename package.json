@@ -19,7 +19,7 @@
   "main": "lib/main.js",
   "dependencies": {
     "@actions/core": "^1.0.0",
-    "@actions/github": "^1.0.0",
+    "@actions/github": "^1.1.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
     "signale": "^1.4.0"
