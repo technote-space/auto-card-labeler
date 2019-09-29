@@ -117,11 +117,11 @@ describe('execute', () => {
 		expect(fn2).toBeCalledTimes(1);
 		stdoutCalledWith(mockStdout, [
 			'::group::Getting card related info...',
+			'> Getting project name... 1',
+			'  >> Backlog',
+			'> Getting column name... 1',
+			'  >> To Do',
 			'::endgroup::',
-			'> Getting project name: 1',
-			'> Getting column name: 1',
-			'> Target project name: Backlog',
-			'> Target column name: To Do',
 			'::group::Getting current labels...',
 			'::endgroup::',
 			'::group::Removing labels...',
@@ -162,11 +162,11 @@ describe('execute', () => {
 		expect(fn).toBeCalledTimes(1);
 		stdoutCalledWith(mockStdout, [
 			'::group::Getting card related info...',
+			'> Getting project name... 1',
+			'  >> Backlog',
+			'> Getting column name... 1',
+			'  >> To Do',
 			'::endgroup::',
-			'> Getting project name: 1',
-			'> Getting column name: 1',
-			'> Target project name: Backlog',
-			'> Target column name: To Do',
 			'::group::Getting current labels...',
 			'::endgroup::',
 			'::group::Adding labels...',
