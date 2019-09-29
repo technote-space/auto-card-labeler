@@ -1,0 +1,29 @@
+[
+  {
+    "id": 208045946,
+    "node_id": "MDU6TGFiZWwyMDgwNDU5NDY=",
+    "url": "https://api.github.com/repos/octocat/Hello-World/labels/test",
+    "name": "test",
+    "description": "Something isn't working",
+    "color": "f29513",
+    "default": true
+  },
+  {
+    "id": 208045947,
+    "node_id": "MDU6TGFiZWwyMDgwNDU5NDc=",
+    "url": "https://api.github.com/repos/octocat/Hello-World/labels/remove1",
+    "name": "remove1",
+    "description": "New feature or request",
+    "color": "a2eeef",
+    "default": false
+  },
+  {
+    "id": 208045948,
+    "node_id": "MDU6TGFiZWwyMDgwNDU5NDc=",
+    "url": "https://api.github.com/repos/octocat/Hello-World/labels/remove2",
+    "name": "remove2",
+    "description": "New feature or request",
+    "color": "a2eeef",
+    "default": false
+  }
+]
