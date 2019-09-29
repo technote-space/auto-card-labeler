@@ -20,7 +20,6 @@ This is a `GitHub Action` that automatically labels Issues or PullRequests based
   - [CONFIG_FILENAME](#config_filename)
 - [Action event details](#action-event-details)
   - [Target event](#target-event)
-  - [Target action](#target-action)
 - [GitHub Actions using this Action](#github-actions-using-this-action)
 - [Author](#author)
 
