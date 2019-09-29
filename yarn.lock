@@ -369,10 +369,10 @@
     "@actions/github" "^1.1.0"
     js-yaml "^3.13.1"
 
-"@technote-space/github-action-helper@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-helper/-/github-action-helper-0.1.6.tgz#8f11f01051506d1ab0ac02520a70c51d9d845b1e"
-  integrity sha512-bNPg8mPUDo/wm675H2/skmN1XEACiBSn2Ib0qLsFiIpdu8m+1J8Rwq54vtPMAYnVrO78WNZwfGwiTJO0ErCG4Q==
+"@technote-space/github-action-helper@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-helper/-/github-action-helper-0.1.7.tgz#d8490c6a05c29644c9505706fb27a6750804166d"
+  integrity sha512-IY/XiOxznRkMtj2sdW4LhYok80f4elkdzJKGPk1bYGhJ9xQi1qzNY8G8iz+l3aeo3CdY4ECGl2/xwEJLzuNCcg==
   dependencies:
     "@actions/core" "^1.1.1"
     "@actions/github" "^1.1.0"
@@ -1665,9 +1665,9 @@ growly@^1.3.0:
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
 
 handlebars@^4.1.2:
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.3.4.tgz#aab065294c27ad16ff4e711240a7288d2753306d"
-  integrity sha512-vvpo6mpK4ScNC1DbGRZ2d5BznS6ht0r1hi20RivsibMc6jNvFAeZQ6qk5VNspo6SOwVOJQbjHyBCpuS7BzA1pw==
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.4.0.tgz#22e1a897c5d83023d39801f35f6b65cf97ed8b25"
+  integrity sha512-xkRtOt3/3DzTKMOt3xahj2M/EqNhY988T+imYSlMgs5fVhLN2fmKVVj0LtEGmb+3UUYV5Qmm1052Mm3dIQxOvw==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"
