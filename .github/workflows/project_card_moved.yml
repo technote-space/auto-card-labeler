@@ -1,4 +1,6 @@
-on: project_card
+on:
+  project_card:
+    types: [moved]
 name: Project Card Event
 jobs:
   triage:
@@ -6,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Auto card labeler
-        uses: technote-space/auto-card-labeler@v1
+        uses: technote-space/auto-card-labeler@test/v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
