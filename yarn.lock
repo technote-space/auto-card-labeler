@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@actions/core@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.1.1.tgz#e08f3dbfe04721bb3d040f8fca2d6d7e1817b2e1"
-  integrity sha512-O5G6EmlzTVsng7VSpNtszIoQq6kOgMGNTFB/hmwKNNA4V71JyxImCIrL27vVHCt2Cb3ImkaCr6o27C2MV9Ylwg==
+"@actions/core@^1.1.1", "@actions/core@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.1.3.tgz#543b0e7ca0e53dccc5dca4811a4fac59c1b35f5c"
+  integrity sha512-2BIib53Jh4Cfm+1XNuZYYGTeRo8yiWEAUMoliMh1qQGMaqTF4VUlhhcsBylTu4qWmUx45DrY0y0XskimAHSqhw==
 
 "@actions/github@^1.1.0":
   version "1.1.0"
@@ -369,12 +369,12 @@
     "@actions/github" "^1.1.0"
     js-yaml "^3.13.1"
 
-"@technote-space/github-action-helper@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-helper/-/github-action-helper-0.1.8.tgz#1fe633572197182f7f05d83e53cfa8b4b1af9871"
-  integrity sha512-rWXeQutOTaqIEGqMEQ+zx1EvRgLeo6IDa4+ERg/lFhIZa7moGHwAF9PnlghqCvKapcl0DuYF5IRIAh6hpwUWuA==
+"@technote-space/github-action-helper@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-helper/-/github-action-helper-0.1.10.tgz#2f6fbbcabd9d70d56ba7ca221be0ecb896e15f65"
+  integrity sha512-DwwgvQvUDG7X1BuXXgPTeG0GPL+1p0Y1Ym/R8f0YNFzY9dmsIbUuhBzkRROx+vORqkqon5rRCa8aMExb2sBjaA==
   dependencies:
-    "@actions/core" "^1.1.1"
+    "@actions/core" "^1.1.3"
     "@actions/github" "^1.1.0"
     sprintf-js "^1.1.2"
 
