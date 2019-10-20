@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/auto-card-labeler",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "GitHub actions to auto label a pull request or an issue based on project card move.",
   "author": "Technote <technote.space@gmail.com> (https://technote.space)",
   "license": "MIT",
@@ -21,16 +21,16 @@
   "dependencies": {
     "@actions/core": "^1.2.0",
     "@actions/github": "^1.1.0",
-    "@technote-space/filter-github-action": "^0.1.4",
-    "@technote-space/github-action-config-helper": "^0.0.4",
-    "@technote-space/github-action-helper": "^0.2.0",
+    "@technote-space/filter-github-action": "^0.1.5",
+    "@technote-space/github-action-config-helper": "^0.0.6",
+    "@technote-space/github-action-helper": "^0.2.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@technote-space/github-action-test-helper": "^0.0.11",
+    "@technote-space/github-action-test-helper": "^0.0.12",
     "@types/jest": "^24.0.19",
     "@types/node": "^12.11.1",
-    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/eslint-plugin": "^2.4.0",
     "@typescript-eslint/parser": "^2.4.0",
     "eslint": "^6.5.1",
     "jest": "^24.9.0",
