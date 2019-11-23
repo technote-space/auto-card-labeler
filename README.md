@@ -1,6 +1,6 @@
 # Auto card labeler
 
-[![Build Status](https://github.com/technote-space/auto-card-labeler/workflows/Build/badge.svg)](https://github.com/technote-space/auto-card-labeler/actions)
+[![CI Status](https://github.com/technote-space/auto-card-labeler/workflows/CI/badge.svg)](https://github.com/technote-space/auto-card-labeler/actions)
 [![codecov](https://codecov.io/gh/technote-space/auto-card-labeler/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/auto-card-labeler)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/auto-card-labeler/badge)](https://www.codefactor.io/repository/github/technote-space/auto-card-labeler)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/auto-card-labeler/blob/master/LICENSE)
