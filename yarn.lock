@@ -388,12 +388,12 @@
   dependencies:
     "@actions/github" "^1.1.0"
 
-"@technote-space/github-action-config-helper@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-0.0.12.tgz#6b0d9e6649e45a670e1118a65751a4acbe264433"
-  integrity sha512-09m4Bz+OZ2aHEuBSEw3f755XCIRSIsQwhwPK3sRtL/qqtw/xcuxN8QOMVBMzrlqIYf4Ez9jZQGruRlNYMtWlug==
+"@technote-space/github-action-config-helper@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-0.0.13.tgz#5aa2ba60bc8cf17a4fa588c05d0b96391731a6d7"
+  integrity sha512-XhqpFwGlUBZdBkIJtEWhXXPMBAIDp3wS91DxrxmTMKo/YNzHMdYWv8DN2Ri2J5xFPcEwf/XlXhhpF29uJGSWlg==
   dependencies:
-    "@actions/github" "^1.1.0"
+    "@actions/github" "^2.0.0"
     js-yaml "^3.13.1"
 
 "@technote-space/github-action-helper@^0.6.25":
