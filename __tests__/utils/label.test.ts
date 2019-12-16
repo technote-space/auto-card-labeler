@@ -34,6 +34,10 @@ describe('getRemoveLabels', () => {
 		expect(getRemoveLabels([], 'project2', 'column1', config)).toEqual([]);
 		expect(getRemoveLabels(['test1', 'test2', 'test3'], 'project2', 'column1', config)).toEqual([]);
 	});
+
+	it('should throw error', () => {
+		expect(() => getRemoveLabels([], 'project0', 'column1', config)).toThrow('project [project0] is not found.');
+	});
 });
 
 describe('getAddLabels', () => {
@@ -53,5 +57,9 @@ describe('getAddLabels', () => {
 		expect(getAddLabels([], 'project2', 'column1', config)).toEqual([
 			'test4',
 		]);
+	});
+
+	it('should throw error', () => {
+		expect(() => getAddLabels([], 'project0', 'column1', config)).toThrow('project [project0] is not found.');
 	});
 });
