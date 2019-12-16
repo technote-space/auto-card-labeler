@@ -54,4 +54,8 @@ describe('getAddLabels', () => {
 			'test4',
 		]);
 	});
+
+	it('should return empty', () => {
+		expect(() => getAddLabels([], 'project0', 'column1', config)).toThrow('project [project0] is not found.');
+	});
 });
