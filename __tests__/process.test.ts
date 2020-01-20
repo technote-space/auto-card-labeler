@@ -43,7 +43,7 @@ describe('execute', () => {
 			.get('/repos/hello/world/contents/.github/config.yml')
 			.reply(404);
 
-		expect(await execute(logger, octokit, context)).toBeFalsy();
+		expect(await execute(logger, octokit, context)).toBe(false);
 
 		stdoutCalledWith(mockStdout, [
 			'::warning::There is no valid config file.',
@@ -58,7 +58,7 @@ describe('execute', () => {
 			.get('/repos/hello/world/contents/.github/config.yml')
 			.reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures'), 'empty.yml'));
 
-		expect(await execute(logger, octokit, context)).toBeFalsy();
+		expect(await execute(logger, octokit, context)).toBe(false);
 
 		stdoutCalledWith(mockStdout, [
 			'::warning::There is no valid config file.',
@@ -75,7 +75,7 @@ describe('execute', () => {
 			.get('/projects/columns/cards/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, 'fixtures'), 'projects.columns.cards.error1'));
 
-		expect(await execute(logger, octokit, context)).toBeFalsy();
+		expect(await execute(logger, octokit, context)).toBe(false);
 
 		stdoutCalledWith(mockStdout, [
 			'::group::Getting card related info...',
@@ -111,7 +111,7 @@ describe('execute', () => {
 				return body;
 			});
 
-		expect(await execute(logger, octokit, context)).toBeTruthy();
+		expect(await execute(logger, octokit, context)).toBe(true);
 
 		expect(fn1).toBeCalledTimes(1);
 		expect(fn2).toBeCalledTimes(1);
@@ -157,7 +157,7 @@ describe('execute', () => {
 				return body;
 			});
 
-		expect(await execute(logger, octokit, context)).toBeTruthy();
+		expect(await execute(logger, octokit, context)).toBe(true);
 
 		expect(fn).toBeCalledTimes(1);
 		stdoutCalledWith(mockStdout, [

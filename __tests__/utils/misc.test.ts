@@ -14,7 +14,7 @@ describe('isTargetEvent', () => {
 				action: 'moved',
 			},
 			eventName: 'project_card',
-		}))).toBeTruthy();
+		}))).toBe(true);
 	});
 
 	it('should return false', () => {
@@ -23,7 +23,7 @@ describe('isTargetEvent', () => {
 				action: 'moved',
 			},
 			eventName: 'push',
-		}))).toBeFalsy();
+		}))).toBe(false);
 	});
 
 	it('should return false', () => {
@@ -32,7 +32,7 @@ describe('isTargetEvent', () => {
 				action: 'created',
 			},
 			eventName: 'project_card',
-		}))).toBeFalsy();
+		}))).toBe(false);
 	});
 });
 
