@@ -3,9 +3,11 @@ import nock from 'nock';
 import path from 'path';
 import { GitHub } from '@actions/github' ;
 import { isTargetEvent } from '@technote-space/filter-github-action';
-import { disableNetConnect, getApiFixture, getContext } from '@technote-space/github-action-test-helper';
+import { testEnv, disableNetConnect, getApiFixture, getContext } from '@technote-space/github-action-test-helper';
 import { getProjectName, getColumnName, getConfigFilename } from '../../src/utils/misc';
-import { TARGET_EVENTS, DEFAULT_CONFIG_FILENAME } from '../../src/constant';
+import { TARGET_EVENTS } from '../../src/constant';
+
+const rootDir = path.resolve(__dirname, '../..');
 
 describe('isTargetEvent', () => {
 	it('should return true', () => {
@@ -93,17 +95,7 @@ describe('getColumnName', () => {
 });
 
 describe('getConfigFilename', () => {
-	const OLD_ENV = process.env;
-
-	beforeEach(() => {
-		jest.resetModules();
-		process.env = {...OLD_ENV};
-		delete process.env.NODE_ENV;
-	});
-
-	afterEach(() => {
-		process.env = OLD_ENV;
-	});
+	testEnv(rootDir);
 
 	it('should get config filename', () => {
 		process.env.INPUT_CONFIG_FILENAME = 'test';
@@ -111,6 +103,6 @@ describe('getConfigFilename', () => {
 	});
 
 	it('should get default config filename', () => {
-		expect(getConfigFilename()).toBe(DEFAULT_CONFIG_FILENAME);
+		expect(getConfigFilename()).toBe('card-labeler.yml');
 	});
 });
