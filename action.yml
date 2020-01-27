@@ -1,6 +1,6 @@
 name: Auto card labeler
 
-description: GitHub actions to auto label a pull request or an issue based on project card move.
+description: GitHub actions that automatically labels Issues or PullRequests based on project card moves.
 
 author: technote-space
 
