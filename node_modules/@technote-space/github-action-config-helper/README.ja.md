@@ -28,7 +28,9 @@ import { getConfig } from '@technote-space/github-action-config-helper';
 import { getInput } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
-const config = getConfig('config.yml', new GitHub(getInput('GITHUB_TOKEN', {required: true})), context);
+...
+
+const config = await getConfig('config.yml', new GitHub(getInput('GITHUB_TOKEN', {required: true})), context);
 ```
 
 ## Author
