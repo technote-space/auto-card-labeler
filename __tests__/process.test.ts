@@ -15,7 +15,7 @@ import {
 import { execute } from '../src/process';
 
 const logger = new Logger();
-const octokit = new GitHub('');
+const octokit = new GitHub('test-token');
 const context = generateContext({
 	event: 'project_card',
 	action: 'moved',

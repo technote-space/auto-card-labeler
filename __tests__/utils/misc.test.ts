@@ -46,7 +46,7 @@ describe('getProjectName', () => {
 			.get('/projects/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.get'));
 
-		expect(await getProjectName(1, new GitHub(''))).toBe('Backlog');
+		expect(await getProjectName(1, new GitHub('test-token'))).toBe('Backlog');
 	});
 
 	it('should not return project name', async() => {
@@ -56,7 +56,7 @@ describe('getProjectName', () => {
 		const fn = jest.fn();
 
 		try {
-			await getProjectName(1, new GitHub(''));
+			await getProjectName(1, new GitHub('test-token'));
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('status');
@@ -74,7 +74,7 @@ describe('getColumnName', () => {
 			.get('/projects/columns/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns'));
 
-		expect(await getColumnName(1, new GitHub(''))).toBe('To Do');
+		expect(await getColumnName(1, new GitHub('test-token'))).toBe('To Do');
 	});
 
 	it('should not return column name', async() => {
@@ -84,7 +84,7 @@ describe('getColumnName', () => {
 		const fn = jest.fn();
 
 		try {
-			await getColumnName(1, new GitHub(''));
+			await getColumnName(1, new GitHub('test-token'));
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('status');

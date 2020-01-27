@@ -6,6 +6,7 @@ const extractProjectNumber = (url: string): number => {
 	if (!match) {
 		throw new Error('Failed to get project number');
 	}
+
 	return parseInt(match[1], 10);
 };
 
@@ -14,6 +15,7 @@ const extractIssueNumber = (url: string): number => {
 	if (!match) {
 		throw new Error('Failed to get issue number');
 	}
+
 	return parseInt(match[1], 10);
 };
 
@@ -29,13 +31,11 @@ export const getRelatedInfo = async(payload: object, octokit: GitHub): Promise<{
 	};
 };
 
-export const getLabels = async(issue: number, octokit: GitHub, context: Context): Promise<string[]> => {
-	return (await octokit.issues.listLabelsOnIssue({
-		owner: context.repo.owner,
-		repo: context.repo.repo,
-		'issue_number': issue,
-	})).data.map(label => label.name);
-};
+export const getLabels = async(issue: number, octokit: GitHub, context: Context): Promise<string[]> => (await octokit.issues.listLabelsOnIssue({
+	owner: context.repo.owner,
+	repo: context.repo.repo,
+	'issue_number': issue,
+})).data.map(label => label.name);
 
 export const addLabels = async(issue: number, labels: string[], octokit: GitHub, context: Context): Promise<void> => {
 	await octokit.issues.addLabels({
