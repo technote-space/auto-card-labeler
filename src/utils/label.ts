@@ -4,6 +4,7 @@ const getProjectConfig = (config: object, project: string): object => {
 	if (project in config) {
 		return config[project];
 	}
+
 	throw new Error(`project [${project}] is not found.`);
 };
 

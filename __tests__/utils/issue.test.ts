@@ -13,7 +13,7 @@ describe('getRelatedInfo', () => {
 			.get('/projects/columns/cards/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards'));
 
-		expect(await getRelatedInfo({'project_card': {id: 1}}, new GitHub(''))).toEqual({
+		expect(await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'))).toEqual({
 			projectId: 120,
 			issueNumber: 123,
 		});
@@ -24,7 +24,7 @@ describe('getRelatedInfo', () => {
 			.get('/projects/columns/cards/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error1'));
 
-		expect(await getRelatedInfo({'project_card': {id: 1}}, new GitHub(''))).toBeFalsy();
+		expect(await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'))).toBeFalsy();
 	});
 
 	it('should throw project error', async() => {
@@ -34,7 +34,7 @@ describe('getRelatedInfo', () => {
 
 		const fn = jest.fn();
 		try {
-			await getRelatedInfo({'project_card': {id: 1}}, new GitHub(''));
+			await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'));
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('message');
@@ -50,7 +50,7 @@ describe('getRelatedInfo', () => {
 
 		const fn = jest.fn();
 		try {
-			await getRelatedInfo({'project_card': {id: 1}}, new GitHub(''));
+			await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'));
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('message');
@@ -66,7 +66,7 @@ describe('getRelatedInfo', () => {
 
 		const fn = jest.fn();
 		try {
-			await getRelatedInfo({'project_card': {id: 1}}, new GitHub(''));
+			await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'));
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('status');
@@ -84,7 +84,7 @@ describe('getLabels', () => {
 			.get('/repos/Codertocat/Hello-World/issues/1/labels')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'repos.issues.labels'));
 
-		expect(await getLabels(1, new GitHub(''), getContext({
+		expect(await getLabels(1, new GitHub('test-token'), getContext({
 			repo: {
 				owner: 'Codertocat',
 				repo: 'Hello-World',
@@ -114,7 +114,7 @@ describe('removeLabels', () => {
 		await removeLabels(1, [
 			'remove1',
 			'remove2',
-		], new GitHub(''), getContext({
+		], new GitHub('test-token'), getContext({
 			repo: {
 				owner: 'Codertocat',
 				repo: 'Hello-World',
@@ -148,7 +148,7 @@ describe('addLabels', () => {
 		await addLabels(1, [
 			'add1',
 			'add2',
-		], new GitHub(''), getContext({
+		], new GitHub('test-token'), getContext({
 			repo: {
 				owner: 'Codertocat',
 				repo: 'Hello-World',

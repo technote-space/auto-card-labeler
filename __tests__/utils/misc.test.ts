@@ -3,9 +3,11 @@ import nock from 'nock';
 import path from 'path';
 import { GitHub } from '@actions/github' ;
 import { isTargetEvent } from '@technote-space/filter-github-action';
-import { disableNetConnect, getApiFixture, getContext } from '@technote-space/github-action-test-helper';
+import { testEnv, disableNetConnect, getApiFixture, getContext } from '@technote-space/github-action-test-helper';
 import { getProjectName, getColumnName, getConfigFilename } from '../../src/utils/misc';
-import { TARGET_EVENTS, DEFAULT_CONFIG_FILENAME } from '../../src/constant';
+import { TARGET_EVENTS } from '../../src/constant';
+
+const rootDir = path.resolve(__dirname, '../..');
 
 describe('isTargetEvent', () => {
 	it('should return true', () => {
@@ -14,7 +16,7 @@ describe('isTargetEvent', () => {
 				action: 'moved',
 			},
 			eventName: 'project_card',
-		}))).toBeTruthy();
+		}))).toBe(true);
 	});
 
 	it('should return false', () => {
@@ -23,7 +25,7 @@ describe('isTargetEvent', () => {
 				action: 'moved',
 			},
 			eventName: 'push',
-		}))).toBeFalsy();
+		}))).toBe(false);
 	});
 
 	it('should return false', () => {
@@ -32,7 +34,7 @@ describe('isTargetEvent', () => {
 				action: 'created',
 			},
 			eventName: 'project_card',
-		}))).toBeFalsy();
+		}))).toBe(false);
 	});
 });
 
@@ -44,7 +46,7 @@ describe('getProjectName', () => {
 			.get('/projects/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.get'));
 
-		expect(await getProjectName(1, new GitHub(''))).toBe('Backlog');
+		expect(await getProjectName(1, new GitHub('test-token'))).toBe('Backlog');
 	});
 
 	it('should not return project name', async() => {
@@ -54,7 +56,7 @@ describe('getProjectName', () => {
 		const fn = jest.fn();
 
 		try {
-			await getProjectName(1, new GitHub(''));
+			await getProjectName(1, new GitHub('test-token'));
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('status');
@@ -72,7 +74,7 @@ describe('getColumnName', () => {
 			.get('/projects/columns/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns'));
 
-		expect(await getColumnName(1, new GitHub(''))).toBe('To Do');
+		expect(await getColumnName(1, new GitHub('test-token'))).toBe('To Do');
 	});
 
 	it('should not return column name', async() => {
@@ -82,7 +84,7 @@ describe('getColumnName', () => {
 		const fn = jest.fn();
 
 		try {
-			await getColumnName(1, new GitHub(''));
+			await getColumnName(1, new GitHub('test-token'));
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('status');
@@ -93,17 +95,7 @@ describe('getColumnName', () => {
 });
 
 describe('getConfigFilename', () => {
-	const OLD_ENV = process.env;
-
-	beforeEach(() => {
-		jest.resetModules();
-		process.env = {...OLD_ENV};
-		delete process.env.NODE_ENV;
-	});
-
-	afterEach(() => {
-		process.env = OLD_ENV;
-	});
+	testEnv(rootDir);
 
 	it('should get config filename', () => {
 		process.env.INPUT_CONFIG_FILENAME = 'test';
@@ -111,6 +103,6 @@ describe('getConfigFilename', () => {
 	});
 
 	it('should get default config filename', () => {
-		expect(getConfigFilename()).toBe(DEFAULT_CONFIG_FILENAME);
+		expect(getConfigFilename()).toBe('card-labeler.yml');
 	});
 });
