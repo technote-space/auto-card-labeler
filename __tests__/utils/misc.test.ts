@@ -1,13 +1,13 @@
 /* eslint-disable no-magic-numbers */
 import nock from 'nock';
 import path from 'path';
-import { GitHub } from '@actions/github' ;
 import { isTargetEvent } from '@technote-space/filter-github-action';
-import { testEnv, disableNetConnect, getApiFixture, getContext } from '@technote-space/github-action-test-helper';
+import { testEnv, disableNetConnect, getApiFixture, getContext, getOctokit } from '@technote-space/github-action-test-helper';
 import { getProjectName, getColumnName, getConfigFilename } from '../../src/utils/misc';
 import { TARGET_EVENTS } from '../../src/constant';
 
 const rootDir = path.resolve(__dirname, '../..');
+const octokit = getOctokit();
 
 describe('isTargetEvent', () => {
 	it('should return true', () => {
@@ -46,7 +46,7 @@ describe('getProjectName', () => {
 			.get('/projects/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.get'));
 
-		expect(await getProjectName(1, new GitHub('test-token'))).toBe('Backlog');
+		expect(await getProjectName(1, octokit)).toBe('Backlog');
 	});
 
 	it('should not return project name', async() => {
@@ -56,7 +56,7 @@ describe('getProjectName', () => {
 		const fn = jest.fn();
 
 		try {
-			await getProjectName(1, new GitHub('test-token'));
+			await getProjectName(1, octokit);
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('status');
@@ -74,7 +74,7 @@ describe('getColumnName', () => {
 			.get('/projects/columns/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns'));
 
-		expect(await getColumnName(1, new GitHub('test-token'))).toBe('To Do');
+		expect(await getColumnName(1, octokit)).toBe('To Do');
 	});
 
 	it('should not return column name', async() => {
@@ -84,7 +84,7 @@ describe('getColumnName', () => {
 		const fn = jest.fn();
 
 		try {
-			await getColumnName(1, new GitHub('test-token'));
+			await getColumnName(1, octokit);
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('status');

@@ -1,4 +1,4 @@
-import { GitHub } from '@actions/github/lib/github';
+import { Octokit } from '@octokit/rest';
 import { Context } from '@actions/github/lib/context';
 
 const extractProjectNumber = (url: string): number => {
@@ -19,7 +19,7 @@ const extractIssueNumber = (url: string): number => {
 	return parseInt(match[1], 10);
 };
 
-export const getRelatedInfo = async(payload: object, octokit: GitHub): Promise<{ projectId: number; issueNumber: number } | false> => {
+export const getRelatedInfo = async(payload: object, octokit: Octokit): Promise<{ projectId: number; issueNumber: number } | false> => {
 	const {data} = await octokit.projects.getCard({'card_id': payload['project_card'].id});
 	if (!('content_url' in data)) {
 		return false;
@@ -31,13 +31,13 @@ export const getRelatedInfo = async(payload: object, octokit: GitHub): Promise<{
 	};
 };
 
-export const getLabels = async(issue: number, octokit: GitHub, context: Context): Promise<string[]> => (await octokit.issues.listLabelsOnIssue({
+export const getLabels = async(issue: number, octokit: Octokit, context: Context): Promise<string[]> => (await octokit.issues.listLabelsOnIssue({
 	owner: context.repo.owner,
 	repo: context.repo.repo,
 	'issue_number': issue,
 })).data.map(label => label.name);
 
-export const addLabels = async(issue: number, labels: string[], octokit: GitHub, context: Context): Promise<void> => {
+export const addLabels = async(issue: number, labels: string[], octokit: Octokit, context: Context): Promise<void> => {
 	await octokit.issues.addLabels({
 		owner: context.repo.owner,
 		repo: context.repo.repo,
@@ -46,7 +46,7 @@ export const addLabels = async(issue: number, labels: string[], octokit: GitHub,
 	});
 };
 
-export const removeLabels = async(issue: number, labels: string[], octokit: GitHub, context: Context): Promise<void> => {
+export const removeLabels = async(issue: number, labels: string[], octokit: Octokit, context: Context): Promise<void> => {
 	await Promise.all(labels.map(label => octokit.issues.removeLabel({
 		owner: context.repo.owner,
 		repo: context.repo.repo,

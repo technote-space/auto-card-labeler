@@ -2,7 +2,6 @@
 import path from 'path';
 import nock from 'nock';
 import { Logger } from '@technote-space/github-action-helper';
-import { GitHub } from '@actions/github/lib/github';
 import {
 	testEnv,
 	generateContext,
@@ -11,11 +10,12 @@ import {
 	stdoutCalledWith,
 	getConfigFixture,
 	getApiFixture,
+	getOctokit,
 } from '@technote-space/github-action-test-helper';
 import { execute } from '../src/process';
 
-const logger = new Logger();
-const octokit = new GitHub('test-token');
+const logger  = new Logger();
+const octokit = getOctokit();
 const context = generateContext({
 	event: 'project_card',
 	action: 'moved',
@@ -38,7 +38,7 @@ describe('execute', () => {
 
 	it('should return false 1', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'config.yml';
-		const mockStdout = spyOnStdout();
+		const mockStdout                  = spyOnStdout();
 		nock('https://api.github.com')
 			.get('/repos/hello/world/contents/.github/config.yml')
 			.reply(404);
@@ -53,7 +53,7 @@ describe('execute', () => {
 
 	it('should return false 2', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'config.yml';
-		const mockStdout = spyOnStdout();
+		const mockStdout                  = spyOnStdout();
 		nock('https://api.github.com')
 			.get('/repos/hello/world/contents/.github/config.yml')
 			.reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures'), 'empty.yml'));
@@ -68,7 +68,7 @@ describe('execute', () => {
 
 	it('should return false 3', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'config.yml';
-		const mockStdout = spyOnStdout();
+		const mockStdout                  = spyOnStdout();
 		nock('https://api.github.com')
 			.get('/repos/hello/world/contents/.github/config.yml')
 			.reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures'), 'config.yml'))
@@ -86,9 +86,9 @@ describe('execute', () => {
 
 	it('should remove labels', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'config.yml';
-		const mockStdout = spyOnStdout();
-		const fn1 = jest.fn();
-		const fn2 = jest.fn();
+		const mockStdout                  = spyOnStdout();
+		const fn1                         = jest.fn();
+		const fn2                         = jest.fn();
 		nock('https://api.github.com')
 			.get('/repos/hello/world/contents/.github/config.yml')
 			.reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures', 'remove'), 'config.yml'))
@@ -135,8 +135,8 @@ describe('execute', () => {
 
 	it('should add labels', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'config.yml';
-		const mockStdout = spyOnStdout();
-		const fn = jest.fn();
+		const mockStdout                  = spyOnStdout();
+		const fn                          = jest.fn();
 		nock('https://api.github.com')
 			.get('/repos/hello/world/contents/.github/config.yml')
 			.reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures', 'add'), 'config.yml'))
