@@ -9,9 +9,12 @@
 
 This is a `GitHub Actions` that automatically labels Issues or PullRequests based on project card moves.
 
+## Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+<details>
+<summary>Details</summary>
 
 - [Screenshot](#screenshot)
 - [Installation](#installation)
@@ -20,9 +23,10 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
   - [CONFIG_FILENAME](#config_filename)
 - [Action event details](#action-event-details)
   - [Target event](#target-event)
-- [GitHub Actions using this Action](#github-actions-using-this-action)
+- [Sample Repositories using this Action](#sample-repositories-using-this-action)
 - [Author](#author)
 
+</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Screenshot
