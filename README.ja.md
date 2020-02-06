@@ -9,9 +9,12 @@
 
 これはプロジェクトのカードの移動によって Issue や PullRequest に自動的にラベルを付与する `GitHub Actions` です。
 
+## Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+<details>
+<summary>Details</summary>
 
 - [スクリーンショット](#%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88)
 - [インストール](#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
@@ -20,9 +23,10 @@
   - [CONFIG_FILENAME](#config_filename)
 - [Action イベント詳細](#action-%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E8%A9%B3%E7%B4%B0)
   - [対象イベント](#%E5%AF%BE%E8%B1%A1%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)
-- [このアクションを使用しているアクションの例](#%E3%81%93%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BE%8B)
+- [このアクションを使用しているリポジトリの例](#%E3%81%93%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E4%BE%8B)
 - [Author](#author)
 
+</details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## スクリーンショット
@@ -114,7 +118,7 @@ default: `'card-labeler.yml'`
 |project_card|moved|
 |project_card|rerequested|
 
-## このアクションを使用しているアクションの例
+## このアクションを使用しているリポジトリの例
 - [Release GitHub Actions](https://github.com/technote-space/release-github-actions)
   - [project_card_moved.yml](https://github.com/technote-space/release-github-actions/blob/master/.github/workflows/project_card_moved.yml)
 - [Auto card labeler](https://github.com/technote-space/auto-card-labeler)
@@ -125,6 +129,12 @@ default: `'card-labeler.yml'`
   - [project_card_moved.yml](https://github.com/technote-space/toc-generator/blob/master/.github/workflows/project_card_moved.yml)
 - [Package Version Check Action](https://github.com/technote-space/package-version-check-action)
   - [project_card_moved.yml](https://github.com/technote-space/package-version-check-action/blob/master/.github/workflows/project_card_moved.yml)
+- [Get Diff Action](https://github.com/technote-space/get-diff-action)
+  - [project_card_moved.yml](https://github.com/technote-space/get-diff-action/blob/master/.github/workflows/project_card_moved.yml)
+- [Create Project Card Action](https://github.com/technote-space/create-project-card-action)
+  - [project_card_moved.yml](https://github.com/technote-space/create-project-card-action/blob/master/.github/workflows/project_card_moved.yml)
+- [Get git comment action](https://github.com/technote-space/get-git-comment-action)
+  - [project_card_moved.yml](https://github.com/technote-space/get-git-comment-action/blob/master/.github/workflows/project_card_moved.yml)
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
