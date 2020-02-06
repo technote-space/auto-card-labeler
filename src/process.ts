@@ -1,12 +1,12 @@
 import { getConfig } from '@technote-space/github-action-config-helper';
-import { GitHub } from '@actions/github';
+import { Octokit } from '@octokit/rest';
 import { Context } from '@actions/github/lib/context';
 import { Logger } from '@technote-space/github-action-helper';
 import { addLabels, getLabels, getRelatedInfo, removeLabels } from './utils/issue';
 import { getAddLabels, getRemoveLabels } from './utils/label';
 import { getColumnName, getConfigFilename, getProjectName } from './utils/misc';
 
-export const execute = async(logger: Logger, octokit: GitHub, context: Context): Promise<boolean> => {
+export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<boolean> => {
 	const config = await getConfig(getConfigFilename(), octokit, context);
 	if (false === config || !Object.keys(config).length) {
 		logger.warn('There is no valid config file.');
@@ -32,9 +32,9 @@ export const execute = async(logger: Logger, octokit: GitHub, context: Context):
 	logger.displayStdout(column);
 
 	logger.startProcess('Getting current labels...');
-	const currentLabels = await getLabels(issueNumber, octokit, context);
+	const currentLabels  = await getLabels(issueNumber, octokit, context);
 	const labelsToRemove = getRemoveLabels(currentLabels, project, column, config);
-	const labelsToAdd = getAddLabels(currentLabels, project, column, config);
+	const labelsToAdd    = getAddLabels(currentLabels, project, column, config);
 
 	if (labelsToRemove.length) {
 		logger.startProcess('Removing labels...');

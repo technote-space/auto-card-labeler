@@ -1,9 +1,10 @@
 /* eslint-disable no-magic-numbers */
 import nock from 'nock';
 import path from 'path';
-import { GitHub } from '@actions/github' ;
 import { getRelatedInfo, getLabels, removeLabels, addLabels } from '../../src/utils/issue';
-import { disableNetConnect, getApiFixture, getContext } from '@technote-space/github-action-test-helper';
+import { disableNetConnect, getApiFixture, getContext, getOctokit } from '@technote-space/github-action-test-helper';
+
+const octokit = getOctokit();
 
 describe('getRelatedInfo', () => {
 	disableNetConnect(nock);
@@ -13,7 +14,7 @@ describe('getRelatedInfo', () => {
 			.get('/projects/columns/cards/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards'));
 
-		expect(await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'))).toEqual({
+		expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toEqual({
 			projectId: 120,
 			issueNumber: 123,
 		});
@@ -24,7 +25,7 @@ describe('getRelatedInfo', () => {
 			.get('/projects/columns/cards/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error1'));
 
-		expect(await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'))).toBeFalsy();
+		expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toBeFalsy();
 	});
 
 	it('should throw project error', async() => {
@@ -34,7 +35,7 @@ describe('getRelatedInfo', () => {
 
 		const fn = jest.fn();
 		try {
-			await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'));
+			await getRelatedInfo({'project_card': {id: 1}}, octokit);
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('message');
@@ -50,7 +51,7 @@ describe('getRelatedInfo', () => {
 
 		const fn = jest.fn();
 		try {
-			await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'));
+			await getRelatedInfo({'project_card': {id: 1}}, octokit);
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('message');
@@ -66,7 +67,7 @@ describe('getRelatedInfo', () => {
 
 		const fn = jest.fn();
 		try {
-			await getRelatedInfo({'project_card': {id: 1}}, new GitHub('test-token'));
+			await getRelatedInfo({'project_card': {id: 1}}, octokit);
 		} catch (error) {
 			fn();
 			expect(error).toHaveProperty('status');
@@ -84,7 +85,7 @@ describe('getLabels', () => {
 			.get('/repos/Codertocat/Hello-World/issues/1/labels')
 			.reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'repos.issues.labels'));
 
-		expect(await getLabels(1, new GitHub('test-token'), getContext({
+		expect(await getLabels(1, octokit, getContext({
 			repo: {
 				owner: 'Codertocat',
 				repo: 'Hello-World',
@@ -114,7 +115,7 @@ describe('removeLabels', () => {
 		await removeLabels(1, [
 			'remove1',
 			'remove2',
-		], new GitHub('test-token'), getContext({
+		], octokit, getContext({
 			repo: {
 				owner: 'Codertocat',
 				repo: 'Hello-World',
@@ -148,7 +149,7 @@ describe('addLabels', () => {
 		await addLabels(1, [
 			'add1',
 			'add2',
-		], new GitHub('test-token'), getContext({
+		], octokit, getContext({
 			repo: {
 				owner: 'Codertocat',
 				repo: 'Hello-World',
