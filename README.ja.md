@@ -114,7 +114,7 @@ default: `'card-labeler.yml'`
 |project_card|moved|
 |project_card|rerequested|
 
-## このアクションを使用しているアクションの例
+## このアクションを使用しているリポジトリの例
 - [Release GitHub Actions](https://github.com/technote-space/release-github-actions)
   - [project_card_moved.yml](https://github.com/technote-space/release-github-actions/blob/master/.github/workflows/project_card_moved.yml)
 - [Auto card labeler](https://github.com/technote-space/auto-card-labeler)
@@ -125,6 +125,12 @@ default: `'card-labeler.yml'`
   - [project_card_moved.yml](https://github.com/technote-space/toc-generator/blob/master/.github/workflows/project_card_moved.yml)
 - [Package Version Check Action](https://github.com/technote-space/package-version-check-action)
   - [project_card_moved.yml](https://github.com/technote-space/package-version-check-action/blob/master/.github/workflows/project_card_moved.yml)
+- [Get Diff Action](https://github.com/technote-space/get-diff-action)
+  - [project_card_moved.yml](https://github.com/technote-space/get-diff-action/blob/master/.github/workflows/project_card_moved.yml)
+- [Create Project Card Action](https://github.com/technote-space/create-project-card-action)
+  - [project_card_moved.yml](https://github.com/technote-space/create-project-card-action/blob/master/.github/workflows/project_card_moved.yml)
+- [Get git comment action](https://github.com/technote-space/get-git-comment-action)
+  - [project_card_moved.yml](https://github.com/technote-space/get-git-comment-action/blob/master/.github/workflows/project_card_moved.yml)
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
