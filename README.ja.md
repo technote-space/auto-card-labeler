@@ -9,6 +9,8 @@
 
 これはプロジェクトのカードの移動によって Issue や PullRequest に自動的にラベルを付与する `GitHub Actions` です。
 
+## Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <details>
