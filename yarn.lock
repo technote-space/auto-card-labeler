@@ -458,28 +458,28 @@
     "@actions/core" "^1.2.2"
     "@actions/github" "^2.1.0"
 
-"@technote-space/github-action-config-helper@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-0.1.3.tgz#6e25e18f0f185ea49e5e48e0b577d52e6ed20e0e"
-  integrity sha512-TaEZhUyNmX3GCsVETjcD3VBi1BXrOc7iOMVSezxBUpXXieGY9U9xUUHSPFZCmtkDDGKIk60lPL10O9jDoq0vdQ==
+"@technote-space/github-action-config-helper@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-0.1.4.tgz#35cc32c6e2b49614fd6f362b09e9698ecb597a65"
+  integrity sha512-C9LzVhKNcw1YJYHzm1mobvmV0ERownj/UAfXoriauzxY0bjdUTzjklkJfui0jag27Hloa/iF5Mva3wO8ljzZuA==
   dependencies:
     "@actions/github" "^2.1.0"
     js-yaml "^3.13.1"
 
-"@technote-space/github-action-helper@^0.8.7":
-  version "0.8.7"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-helper/-/github-action-helper-0.8.7.tgz#684faa03240159cc7bd8e52ca13016d174ea5932"
-  integrity sha512-gBFwZSi7ZL3HDDi8WYu99CIXE3UPeBQuZCqtJCk8ZlbEjByPYtlEgvxE1Hxd+xNuS2D+SXdZikYbEY2moagCgw==
+"@technote-space/github-action-helper@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-helper/-/github-action-helper-1.0.6.tgz#c0af0b7cfd6a120393550d027ddc92a263921ce0"
+  integrity sha512-sIwjmmeUeW82t+fJO9bkyyBYsiST6VO1yP4pVYaUFR6hXtriR3CUpDe1+3IPypjSJvQ2OgCAInaNrhZ8irdp9w==
   dependencies:
     "@actions/core" "^1.2.2"
     "@actions/github" "^2.1.0"
     shell-escape "^0.2.0"
     sprintf-js "^1.1.2"
 
-"@technote-space/github-action-test-helper@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-test-helper/-/github-action-test-helper-0.2.0.tgz#6a5dc8599fac75c19c3b7562a278427d44b17d7f"
-  integrity sha512-xxQEh4MiJJg/x4nSknEJVoLPYx2tdkCGaAGrhdg/SmHfWgipDdcP+HxC8FQLRzJHJdDfTOS7YV/+hRaDkStOTw==
+"@technote-space/github-action-test-helper@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-test-helper/-/github-action-test-helper-0.2.1.tgz#06869400e36b32a93eb73ab15cfd2a6354e9358e"
+  integrity sha512-BSaLwFazl9ZrUCZyoYDhL+3RoTXLWezi2BYHRHwvOypdvKaEABMn64IvqOFkl9jLs3Z5DIApOQcHyXqhNTrW/g==
   dependencies:
     "@actions/github" "^2.1.0"
     js-yaml "^3.13.1"
@@ -2859,10 +2859,10 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nock@^11.7.2:
-  version "11.7.2"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-11.7.2.tgz#4cee4fa838dc3635c074c5b3436bcdec7f7ee213"
-  integrity sha512-7swr5bL1xBZ5FctyubjxEVySXOSebyqcL7Vy1bx1nS9IUqQWj81cmKjVKJLr8fHhtzI1MV8nyCdENA/cGcY1+Q==
+nock@^11.8.2:
+  version "11.8.2"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-11.8.2.tgz#7845608d57769f41375b63521a7e6b554f4cdbb2"
+  integrity sha512-udrFXJ/aqPM9NmrKOcNJ67lvrs/zroNq2sbumhaMPW5JLNy/6LsWiZEwU9DiQIUHOcOCR4MPeqIG7uQNbDGExA==
   dependencies:
     debug "^4.1.0"
     json-stringify-safe "^5.0.1"
@@ -3350,9 +3350,9 @@ rimraf@2.6.3:
     glob "^7.1.3"
 
 rimraf@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-3.0.1.tgz#48d3d4cb46c80d388ab26cd61b1b466ae9ae225a"
-  integrity sha512-IQ4ikL8SjBiEDZfk+DFVwqRK8md24RWMEJkdSlgNLkyyAImcjf8SWvU1qFMDOb4igBClbTQ/ugPqXcRwdFTxZw==
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-3.0.2.tgz#f1a5402ba6220ad52cc1282bac1ae3aa49fd061a"
+  integrity sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==
   dependencies:
     glob "^7.1.3"
 
@@ -3989,9 +3989,9 @@ v8-compile-cache@^2.0.3:
   integrity sha512-usZBT3PW+LOjM25wbqIlZwPeJV+3OSz3M1k1Ws8snlW39dZyYL9lOGC5FgPVHfk0jKmjiDV8Z0mIbVQPiwFs7g==
 
 v8-to-istanbul@^4.0.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-4.1.1.tgz#cc2a6737bb6ee2941ceed38027d7b93083dc9a3a"
-  integrity sha512-eDRcudafj/GAV2MSoDNmsV/deeIY9bJ94QuVOzZDEbBd4uX+5v/kODX+p/fqZ74/VYLK1BZv8BPJlNnCV8vDhw==
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-4.1.2.tgz#387d173be5383dbec209d21af033dcb892e3ac82"
+  integrity sha512-G9R+Hpw0ITAmPSr47lSlc5A1uekSYzXxTMlFxso2xoffwo4jQnzbv1p9yXIinO8UMZKfAFewaCHwWvnH4Jb4Ug==
   dependencies:
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^1.6.0"
