@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/github-action-config-helper",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Helper for GitHub Action to manage config.",
   "author": {
     "name": "Technote",
