@@ -19,7 +19,7 @@ const octokit = getOctokit();
 const context = generateContext({
 	event: 'project_card',
 	action: 'moved',
-	ref: 'heads/master',
+	ref: 'refs/heads/master',
 	sha: 'test-sha',
 	owner: 'hello',
 	repo: 'world',
