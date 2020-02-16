@@ -10,7 +10,7 @@ const rootDir = path.resolve(__dirname, '../..');
 const octokit = getOctokit();
 
 describe('isTargetEvent', () => {
-	it('should return true', () => {
+	it('should return true 1', () => {
 		expect(isTargetEvent(TARGET_EVENTS, getContext({
 			payload: {
 				action: 'moved',
@@ -19,7 +19,16 @@ describe('isTargetEvent', () => {
 		}))).toBe(true);
 	});
 
-	it('should return false', () => {
+	it('should return true 2', () => {
+		expect(isTargetEvent(TARGET_EVENTS, getContext({
+			payload: {
+				action: 'created',
+			},
+			eventName: 'project_card',
+		}))).toBe(true);
+	});
+
+	it('should return false 1', () => {
 		expect(isTargetEvent(TARGET_EVENTS, getContext({
 			payload: {
 				action: 'moved',
@@ -28,10 +37,10 @@ describe('isTargetEvent', () => {
 		}))).toBe(false);
 	});
 
-	it('should return false', () => {
+	it('should return false 2', () => {
 		expect(isTargetEvent(TARGET_EVENTS, getContext({
 			payload: {
-				action: 'created',
+				action: 'edited',
 			},
 			eventName: 'project_card',
 		}))).toBe(false);
