@@ -450,18 +450,18 @@
   dependencies:
     type-detect "4.0.8"
 
-"@technote-space/filter-github-action@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@technote-space/filter-github-action/-/filter-github-action-0.2.2.tgz#30e0a63b569257e2bafa3dacd95a6a6599a4df60"
-  integrity sha512-H5ZsxYhN1nyzRMyudybXlAAaidP2EnRGTvsVXGBbC+lM6WR/VSECz6UsK6MC3HUjGGjuMdA0xoT1H0Q9X2A/fw==
+"@technote-space/filter-github-action@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@technote-space/filter-github-action/-/filter-github-action-0.2.3.tgz#ab467724de0905b10f9737c69d550354bcb2138c"
+  integrity sha512-9lAbzEseqwfYoEQehJA0CqLEbmDuLAWTl6e8qyAnQBKGXQnqN8wrDXGqdEcY5sMwlIyQtRPLQW32oBtT0O4PRQ==
   dependencies:
     "@actions/core" "^1.2.2"
     "@actions/github" "^2.1.0"
 
-"@technote-space/github-action-config-helper@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-0.1.5.tgz#7b02df8de5b56e52311dc60d2018b046b45af057"
-  integrity sha512-p46lWkypH5B8kAgfq1ZL/wc5Pm+Edm6PSpfBUoSZYodHauYuOF6Cpc3/Iph5aOoYSeUm/BXiGQ4uBns/0qp8lw==
+"@technote-space/github-action-config-helper@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-0.1.6.tgz#1b5e4879c55aaf1ae694bc8d40f95cbf370bddc6"
+  integrity sha512-QCOSVNIYWRHoTEoTUTGOEmqTBsOPwIrpJ4uNXc0QjEWcE0A1XS6bGQIZF7uiPgkFvOZhPK52s7jZSiw8xRrY3g==
   dependencies:
     "@actions/github" "^2.1.0"
     js-yaml "^3.13.1"
