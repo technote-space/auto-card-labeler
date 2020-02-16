@@ -19,7 +19,7 @@ describe('isTargetEvent', () => {
 		}))).toBe(true);
 	});
 
-	it('should return false', () => {
+	it('should return false 1', () => {
 		expect(isTargetEvent(TARGET_EVENTS, getContext({
 			payload: {
 				action: 'moved',
@@ -28,7 +28,7 @@ describe('isTargetEvent', () => {
 		}))).toBe(false);
 	});
 
-	it('should return false', () => {
+	it('should return false 2', () => {
 		expect(isTargetEvent(TARGET_EVENTS, getContext({
 			payload: {
 				action: 'created',
