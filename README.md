@@ -23,7 +23,7 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
   - [CONFIG_FILENAME](#config_filename)
 - [Action event details](#action-event-details)
   - [Target event](#target-event)
-- [Sample Repositories using this Action](#sample-repositories-using-this-action)
+- [Example Repositories using this action](#example-repositories-using-this-action)
 - [Author](#author)
 
 </details>
