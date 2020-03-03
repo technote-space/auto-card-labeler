@@ -118,7 +118,7 @@ default: `'card-labeler.yml'`
 |project_card|moved|
 |project_card|created|
 
-## Sample Repositories using this Action
+## Example Repositories using this action
 - [Release GitHub Actions](https://github.com/technote-space/release-github-actions)
   - [project-card-moved.yml](https://github.com/technote-space/release-github-actions/blob/master/.github/workflows/project-card-moved.yml)
 - [Auto card labeler](https://github.com/technote-space/auto-card-labeler)
