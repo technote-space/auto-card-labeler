@@ -34,7 +34,7 @@
 
 ## インストール
 1. workflow を設定  
-   例：`.github/workflows/project_card_moved.yml`
+   例：`.github/workflows/project-card-moved.yml`
    ```yaml
    on:
      project_card:
@@ -120,21 +120,21 @@ default: `'card-labeler.yml'`
 
 ## このアクションを使用しているリポジトリの例
 - [Release GitHub Actions](https://github.com/technote-space/release-github-actions)
-  - [project_card_moved.yml](https://github.com/technote-space/release-github-actions/blob/master/.github/workflows/project_card_moved.yml)
+  - [project-card-moved.yml](https://github.com/technote-space/release-github-actions/blob/master/.github/workflows/project-card-moved.yml)
 - [Auto card labeler](https://github.com/technote-space/auto-card-labeler)
-  - [project_card_moved.yml](https://github.com/technote-space/auto-card-labeler/blob/master/.github/workflows/project_card_moved.yml)
+  - [project-card-moved.yml](https://github.com/technote-space/auto-card-labeler/blob/master/.github/workflows/project-card-moved.yml)
 - [Assign Author](https://github.com/technote-space/assign-author)
-  - [project_card_moved.yml](https://github.com/technote-space/assign-author/blob/master/.github/workflows/project_card_moved.yml)
+  - [project-card-moved.yml](https://github.com/technote-space/assign-author/blob/master/.github/workflows/project-card-moved.yml)
 - [TOC Generator](https://github.com/technote-space/toc-generator)
-  - [project_card_moved.yml](https://github.com/technote-space/toc-generator/blob/master/.github/workflows/project_card_moved.yml)
+  - [project-card-moved.yml](https://github.com/technote-space/toc-generator/blob/master/.github/workflows/project-card-moved.yml)
 - [Package Version Check Action](https://github.com/technote-space/package-version-check-action)
-  - [project_card_moved.yml](https://github.com/technote-space/package-version-check-action/blob/master/.github/workflows/project_card_moved.yml)
+  - [project-card-moved.yml](https://github.com/technote-space/package-version-check-action/blob/master/.github/workflows/project-card-moved.yml)
 - [Get Diff Action](https://github.com/technote-space/get-diff-action)
-  - [project_card_moved.yml](https://github.com/technote-space/get-diff-action/blob/master/.github/workflows/project_card_moved.yml)
+  - [project-card-moved.yml](https://github.com/technote-space/get-diff-action/blob/master/.github/workflows/project-card-moved.yml)
 - [Create Project Card Action](https://github.com/technote-space/create-project-card-action)
-  - [project_card_moved.yml](https://github.com/technote-space/create-project-card-action/blob/master/.github/workflows/project_card_moved.yml)
+  - [project-card-moved.yml](https://github.com/technote-space/create-project-card-action/blob/master/.github/workflows/project-card-moved.yml)
 - [Get git comment action](https://github.com/technote-space/get-git-comment-action)
-  - [project_card_moved.yml](https://github.com/technote-space/get-git-comment-action/blob/master/.github/workflows/project_card_moved.yml)
+  - [project-card-moved.yml](https://github.com/technote-space/get-git-comment-action/blob/master/.github/workflows/project-card-moved.yml)
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
