@@ -32,7 +32,7 @@
 ## スクリーンショット
 ![GitHub Action](https://raw.githubusercontent.com/technote-space/auto-card-labeler/images/screenshot.gif)
 
-## インストール
+## 使用方法
 1. workflow を設定  
    例：`.github/workflows/project-card-moved.yml`
    ```yaml
