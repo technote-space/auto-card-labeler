@@ -8,7 +8,7 @@ import { getColumnName, getConfigFilename, getProjectName } from './utils/misc';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<boolean> => {
 	const config = await getConfig(getConfigFilename(), octokit, context);
-	if (false === config || !Object.keys(config).length) {
+	if (false === config) {
 		logger.warn('There is no valid config file.');
 		logger.warn('Please create config file: %s', getConfigFilename());
 		return false;
