@@ -116,7 +116,7 @@ default: `'card-labeler.yml'`
 | eventName | action |
 |:---:|:---:|
 |project_card|moved|
-|project_card|rerequested|
+|project_card|created|
 
 ## このアクションを使用しているリポジトリの例
 - [Release GitHub Actions](https://github.com/technote-space/release-github-actions)
