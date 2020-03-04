@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/auto-card-labeler",
-  "version": "1.1.12",
+  "version": "1.2.0",
   "description": "GitHub actions that automatically labels Issues or PullRequests based on project card moves.",
   "author": {
     "name": "Technote",
@@ -60,6 +60,7 @@
     "lint": "eslint 'src/**/*.ts' '__tests__/**/*.ts' --cache",
     "lint:fix": "eslint --fix 'src/**/*.ts' '__tests__/**/*.ts'",
     "cover": "jest --coverage",
-    "update": "ncu -u && yarn install && yarn upgrade && yarn audit"
+    "update": "ncu -u && yarn install && yarn upgrade && yarn audit",
+    "release": "yarn release-ga --test"
   }
 }
