@@ -32,7 +32,7 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
 ## Screenshot
 ![GitHub Action](https://raw.githubusercontent.com/technote-space/auto-card-labeler/images/screenshot.gif)
 
-## Installation
+## Usage
 1. Setup workflow  
    e.g. `.github/workflows/project-card-moved.yml`
    ```yaml
@@ -47,8 +47,6 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
        steps:
          - name: Auto card labeler
            uses: technote-space/auto-card-labeler@v1
-           with:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    ```
 1. Add action setting  
    e.g. `.github/card-labeler.yml`
