@@ -17,7 +17,7 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
 <summary>Details</summary>
 
 - [Screenshot](#screenshot)
-- [Installation](#installation)
+- [Usage](#usage)
 - [Behavior](#behavior)
 - [Options](#options)
   - [CONFIG_FILENAME](#config_filename)
