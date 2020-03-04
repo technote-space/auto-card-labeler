@@ -47,8 +47,6 @@
        steps:
          - name: Auto card labeler
            uses: technote-space/auto-card-labeler@v1
-           with:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    ```
 1. アクション用設定の追加  
    例：`.github/card-labeler.yml`
