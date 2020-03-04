@@ -45,8 +45,7 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
        name: Auto card labeler
        runs-on: ubuntu-latest
        steps:
-         - name: Auto card labeler
-           uses: technote-space/auto-card-labeler@v1
+         - name: technote-space/auto-card-labeler@v1
    ```
 1. Add action setting  
    e.g. `.github/card-labeler.yml`
