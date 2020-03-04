@@ -17,7 +17,7 @@
 <summary>Details</summary>
 
 - [スクリーンショット](#%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88)
-- [インストール](#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+- [使用方法](#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
 - [動作](#%E5%8B%95%E4%BD%9C)
 - [オプション](#%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3)
   - [CONFIG_FILENAME](#config_filename)
@@ -45,8 +45,7 @@
        name: Auto card labeler
        runs-on: ubuntu-latest
        steps:
-         - name: Auto card labeler
-           uses: technote-space/auto-card-labeler@v1
+         - name: technote-space/auto-card-labeler@v1
    ```
 1. アクション用設定の追加  
    例：`.github/card-labeler.yml`
