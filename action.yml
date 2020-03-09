@@ -1,0 +1,23 @@
+name: Auto card labeler
+
+description: GitHub actions that automatically labels Issues or PullRequests based on project card moves.
+
+author: technote-space
+
+inputs:
+  GITHUB_TOKEN:
+    description: Secret GitHub API token to use for making API requests.
+    default: ${{ github.token }}
+    required: true
+  CONFIG_FILENAME:
+    description: Config file name.
+    default: 'card-labeler.yml'
+    required: true
+
+branding:
+  icon: 'tag'
+  color: 'blue'
+
+runs:
+  using: node12
+  main: lib/main.js
