@@ -20,7 +20,6 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
 - [Usage](#usage)
 - [Behavior](#behavior)
 - [Options](#options)
-  - [CONFIG_FILENAME](#config_filename)
 - [Action event details](#action-event-details)
   - [Target event](#target-event)
 - [Example Repositories using this action](#example-repositories-using-this-action)
