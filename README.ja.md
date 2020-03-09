@@ -45,7 +45,7 @@
        name: Auto card labeler
        runs-on: ubuntu-latest
        steps:
-         - name: technote-space/auto-card-labeler@v1
+         - uses: technote-space/auto-card-labeler@v1
    ```
 1. アクション用設定の追加  
    例：`.github/card-labeler.yml`
