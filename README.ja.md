@@ -104,9 +104,10 @@ Project name1:
      - `Status: test1`
 
 ## オプション
-### CONFIG_FILENAME
-アクション用設定のファイル名  
-default: `'card-labeler.yml'`
+| name | description | default | required | e.g. |
+|:---:|:---|:---:|:---:|:---:|
+| CONFIG_FILENAME | アクション用設定のファイル名 | `card-labeler.yml` | true | `card-labeler-setting.yml` |
+| GITHUB_TOKEN | アクセストークン | `${{github.token}}` | true | `${{secrets.ACCESS_TOKEN}}` |
 
 ## Action イベント詳細
 ### 対象イベント
