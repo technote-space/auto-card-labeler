@@ -20,7 +20,6 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
 - [Usage](#usage)
 - [Behavior](#behavior)
 - [Options](#options)
-  - [CONFIG_FILENAME](#config_filename)
 - [Action event details](#action-event-details)
   - [Target event](#target-event)
 - [Example Repositories using this action](#example-repositories-using-this-action)
@@ -45,7 +44,7 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
        name: Auto card labeler
        runs-on: ubuntu-latest
        steps:
-         - name: technote-space/auto-card-labeler@v1
+         - uses: technote-space/auto-card-labeler@v1
    ```
 1. Add action setting  
    e.g. `.github/card-labeler.yml`
@@ -104,9 +103,10 @@ Project name1:
      - `Status: test1`
 
 ## Options
-### CONFIG_FILENAME
-Config file name.  
-default: `'card-labeler.yml'`
+| name | description | default | required | e.g. |
+|:---:|:---|:---:|:---:|:---:|
+| CONFIG_FILENAME | Config file name | `card-labeler.yml` | true | `card-labeler-setting.yml` |
+| GITHUB_TOKEN | Access token | `${{github.token}}` | true | `${{secrets.ACCESS_TOKEN}}` |
 
 ## Action event details
 ### Target event
