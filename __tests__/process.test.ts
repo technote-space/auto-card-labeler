@@ -60,21 +60,6 @@ describe('execute', () => {
 		const mockStdout                  = spyOnStdout();
 		nock('https://api.github.com')
 			.get('/repos/hello/world/contents/.github/config.yml')
-			.reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures'), 'empty.yml'));
-
-		expect(await execute(logger, octokit, context)).toBe(false);
-
-		stdoutCalledWith(mockStdout, [
-			'::warning::There is no valid config file.',
-			'::warning::Please create config file: config.yml',
-		]);
-	});
-
-	it('should return false 3', async() => {
-		process.env.INPUT_CONFIG_FILENAME = 'config.yml';
-		const mockStdout                  = spyOnStdout();
-		nock('https://api.github.com')
-			.get('/repos/hello/world/contents/.github/config.yml')
 			.reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures'), 'config.yml'))
 			.get('/projects/columns/cards/1')
 			.reply(200, getApiFixture(path.resolve(__dirname, 'fixtures'), 'projects.columns.cards.error1'));
