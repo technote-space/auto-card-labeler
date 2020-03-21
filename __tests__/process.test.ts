@@ -32,6 +32,10 @@ const context = generateContext({
 	},
 });
 
+beforeEach(() => {
+	Logger.resetForTesting();
+});
+
 describe('execute', () => {
 	testEnv();
 	disableNetConnect(nock);
