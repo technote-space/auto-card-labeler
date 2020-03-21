@@ -18,6 +18,9 @@
 <summary>Details</summary>
 
 - [使用方法](#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
+- [サポートされているファイルの種類](#%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E7%A8%AE%E9%A1%9E)
+  - [YAML](#yaml)
+  - [JSON](#json)
 - [Author](#author)
 
 </details>
@@ -35,7 +38,22 @@ import { context, GitHub } from '@actions/github';
 ...
 
 const config = await getConfig('config.yml', new GitHub(getInput('GITHUB_TOKEN', {required: true})), context);
+//const config = await getConfig('config.json', new GitHub(getInput('GITHUB_TOKEN', {required: true})), context, {ref: 'feature/change'}); // branch
+//const config = await getConfig('config', new GitHub(getInput('GITHUB_TOKEN', {required: true})), context, {ref: 'v1.2.3'}); // tag
+//const config = await getConfig('config.yml', new GitHub(getInput('GITHUB_TOKEN', {required: true})), context, {configPath: ''}); // default: '.github'
 ```
+
+## サポートされているファイルの種類
+### YAML
+- `.yml`
+- `.yaml`
+
+### JSON
+その他の拡張子
+
+e.g. 
+- `config.json`
+- `.eslintrc`
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  
