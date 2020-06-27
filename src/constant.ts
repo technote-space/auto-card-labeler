@@ -1,3 +1,3 @@
 export const TARGET_EVENTS = {
-	'project_card': ['moved', 'created'],
+  'project_card': ['moved', 'created'],
 };

@@ -1,5 +1,5 @@
-import { getInput } from '@actions/core' ;
-import { Octokit } from '@octokit/rest';
+import {getInput} from '@actions/core' ;
+import {Octokit} from '@technote-space/github-action-helper/dist/types';
 
 export const getProjectName = async(projectId: number, octokit: Octokit): Promise<string> => (await octokit.projects.get({'project_id': projectId})).data.name;
 
