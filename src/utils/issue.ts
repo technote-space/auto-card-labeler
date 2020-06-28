@@ -21,15 +21,25 @@ const extractIssueNumber = (url: string): number => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getRelatedInfo = async(payload: { [key: string]: any }, octokit: Octokit): Promise<{ projectId: number; issueNumber: number } | false> => {
-  const {data} = await octokit.projects.getCard({'card_id': payload['project_card'].id});
-  if (!('content_url' in data)) {
-    return false;
-  }
+  try {
+    const {data} = await octokit.projects.getCard({'card_id': payload['project_card'].id});
+    if (!('content_url' in data)) {
+      return false;
+    }
 
-  return {
-    projectId: extractProjectNumber(data['project_url']),
-    issueNumber: extractIssueNumber(data['content_url']),
-  };
+    return {
+      projectId: extractProjectNumber(data['project_url']),
+      issueNumber: extractIssueNumber(data['content_url']),
+    };
+  } catch (error) {
+    console.log(error);
+    // eslint-disable-next-line no-magic-numbers
+    if (error.status === 404) {
+      return false;
+    }
+
+    throw error;
+  }
 };
 
 export const getLabels = async(issue: number, octokit: Octokit, context: Context): Promise<string[]> => (await octokit.issues.listLabelsOnIssue({

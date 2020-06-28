@@ -2,7 +2,7 @@
 import nock from 'nock';
 import path from 'path';
 import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
-import {disableNetConnect, getApiFixture, getContext, getOctokit} from '@technote-space/github-action-test-helper';
+import {disableNetConnect, getApiFixture, getContext, getOctokit, spyOnStdout, stdoutContains} from '@technote-space/github-action-test-helper';
 
 const octokit = getOctokit();
 
@@ -20,12 +20,20 @@ describe('getRelatedInfo', () => {
     });
   });
 
-  it('should not get related info', async() => {
+  it('should not get related info 1', async() => {
     nock('https://api.github.com')
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error1'));
 
-    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toBeFalsy();
+    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toBe(false);
+  });
+
+  it('should not get related info 2', async() => {
+    nock('https://api.github.com')
+      .get('/projects/columns/cards/1')
+      .reply(404);
+
+    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toBe(false);
   });
 
   it('should throw project error', async() => {
@@ -56,22 +64,6 @@ describe('getRelatedInfo', () => {
       fn();
       expect(error).toHaveProperty('message');
       expect(error.message).toBe('Failed to get issue number');
-    }
-    expect(fn).toBeCalled();
-  });
-
-  it('should not get related issue', async() => {
-    nock('https://api.github.com')
-      .get('/projects/columns/cards/1')
-      .reply(404);
-
-    const fn = jest.fn();
-    try {
-      await getRelatedInfo({'project_card': {id: 1}}, octokit);
-    } catch (error) {
-      fn();
-      expect(error).toHaveProperty('status');
-      expect(error.status).toBe(404);
     }
     expect(fn).toBeCalled();
   });
