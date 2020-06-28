@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/auto-card-labeler",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "GitHub actions that automatically labels Issues or PullRequests based on project card moves.",
   "author": {
     "name": "Technote",
