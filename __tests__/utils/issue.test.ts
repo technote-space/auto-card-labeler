@@ -2,7 +2,7 @@
 import nock from 'nock';
 import path from 'path';
 import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
-import {disableNetConnect, getApiFixture, getContext, getOctokit, spyOnStdout, stdoutContains} from '@technote-space/github-action-test-helper';
+import {disableNetConnect, getApiFixture, getContext, getOctokit} from '@technote-space/github-action-test-helper';
 
 const octokit = getOctokit();
 
