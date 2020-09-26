@@ -1,7 +1,7 @@
 import {getConfig} from '@technote-space/github-action-config-helper';
 import {Octokit} from '@technote-space/github-action-helper/dist/types';
 import {Context} from '@actions/github/lib/context';
-import {Logger} from '@technote-space/github-action-helper';
+import {Logger} from '@technote-space/github-action-log-helper';
 import {addLabels, getLabels, getRelatedInfo, removeLabels} from './utils/issue';
 import {getAddLabels, getRemoveLabels} from './utils/label';
 import {getColumnName, getConfigFilename, getProjectName} from './utils/misc';

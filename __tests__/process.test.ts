@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers */
 import path from 'path';
 import nock from 'nock';
-import {Logger} from '@technote-space/github-action-helper';
+import {Logger} from '@technote-space/github-action-log-helper';
 import {
   testEnv,
   generateContext,
