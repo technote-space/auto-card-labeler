@@ -1,5 +1,8 @@
 import {Octokit} from '@technote-space/github-action-helper/dist/types';
 import {Context} from '@actions/github/lib/context';
+import {Utils} from '@technote-space/github-action-helper';
+
+const {ensureNotNull} = Utils;
 
 const extractProjectNumber = (url: string): number => {
   const match = url.match(/projects\/(\d+)$/);
@@ -29,7 +32,7 @@ export const getRelatedInfo = async(payload: { [key: string]: any }, octokit: Oc
 
     return {
       projectId: extractProjectNumber(data['project_url']),
-      issueNumber: extractIssueNumber(data['content_url']),
+      issueNumber: extractIssueNumber(ensureNotNull(data['content_url'])),
     };
   } catch (error) {
     console.log(error);
