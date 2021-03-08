@@ -1,5 +1,6 @@
 import {flatMap, uniq, difference, intersection} from 'lodash';
 import {ProjectNotFoundError} from '../errors';
+import {isRegexpSearchProject, getRegexpSearchProjectFlags, isRegexpSearchColumn, getRegexpSearchColumnFlags} from './misc';
 
 type ProjectConfigType = {
   [key: string]: string | string[];
@@ -9,21 +10,38 @@ type ConfigType = {
 };
 
 const getProjectConfig = (config: ConfigType, project: string): ProjectConfigType => {
-  if (project in config) {
-    return config[project];
+  if (isRegexpSearchProject()) {
+    const key = Object.keys(config).find(key => new RegExp(key, getRegexpSearchProjectFlags()).test(project));
+    if (key) {
+      return config[key];
+    }
+  } else {
+    if (project in config) {
+      return config[project];
+    }
   }
 
   throw new ProjectNotFoundError(`project [${project}] is not found.`);
 };
 
-const getLabels = (config: ConfigType, project: string, column: string): string[] => {
-  const projectConfig = getProjectConfig(config, project);
-  if (column in projectConfig) {
-    if (typeof projectConfig[column] === 'string') {
-      return [projectConfig[column] as string];
-    }
+const extractLabels = (config: ProjectConfigType, column: string): string[] => {
+  if (typeof config[column] === 'string') {
+    return [config[column] as string];
+  }
 
-    return uniq(Object.values(projectConfig[column]));
+  return uniq(Object.values(config[column]));
+};
+const getLabels     = (config: ConfigType, project: string, column: string): string[] => {
+  const projectConfig = getProjectConfig(config, project);
+  if (isRegexpSearchColumn()) {
+    const key = Object.keys(projectConfig).find(key => new RegExp(key, getRegexpSearchColumnFlags()).test(column));
+    if (key) {
+      return extractLabels(projectConfig, key);
+    }
+  } else {
+    if (column in projectConfig) {
+      return extractLabels(projectConfig, column);
+    }
   }
 
   return [];
