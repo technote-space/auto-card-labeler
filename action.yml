@@ -13,6 +13,10 @@ inputs:
     description: Config file name.
     default: 'card-labeler.yml'
     required: true
+  PROJECT_CONFIG_IS_REQUIRED:
+    description: Whether to throw an error if the project's configuration is not found.
+    default: 'false'
+    required: false
 
 branding:
   icon: 'tag'

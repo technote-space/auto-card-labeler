@@ -4,7 +4,8 @@ import {Context} from '@actions/github/lib/context';
 import {Logger} from '@technote-space/github-action-log-helper';
 import {addLabels, getLabels, getRelatedInfo, removeLabels} from './utils/issue';
 import {getAddLabels, getRemoveLabels} from './utils/label';
-import {getColumnName, getConfigFilename, getProjectName} from './utils/misc';
+import {getColumnName, getConfigFilename, getProjectName, isProjectConfigRequired} from './utils/misc';
+import {ProjectNotFoundError} from './errors';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<boolean> => {
   const config = await getConfig(getConfigFilename(), octokit, context);
@@ -32,23 +33,33 @@ export const execute = async(logger: Logger, octokit: Octokit, context: Context)
   logger.displayStdout(column);
 
   logger.startProcess('Getting current labels...');
-  const currentLabels  = await getLabels(issueNumber, octokit, context);
-  const labelsToRemove = getRemoveLabels(currentLabels, project, column, config);
-  const labelsToAdd    = getAddLabels(currentLabels, project, column, config);
+  const currentLabels = await getLabels(issueNumber, octokit, context);
+  try {
+    const labelsToRemove = getRemoveLabels(currentLabels, project, column, config);
+    const labelsToAdd    = getAddLabels(currentLabels, project, column, config);
 
-  if (labelsToRemove.length) {
-    logger.startProcess('Removing labels...');
-    logger.displayStdout(labelsToRemove);
-    await removeLabels(issueNumber, labelsToRemove, octokit, context);
-  }
-  if (labelsToAdd.length) {
-    logger.startProcess('Adding labels...');
-    logger.displayStdout(labelsToAdd);
-    await addLabels(issueNumber, labelsToAdd, octokit, context);
-  }
-  logger.endProcess();
+    if (labelsToRemove.length) {
+      logger.startProcess('Removing labels...');
+      logger.displayStdout(labelsToRemove);
+      await removeLabels(issueNumber, labelsToRemove, octokit, context);
+    }
+    if (labelsToAdd.length) {
+      logger.startProcess('Adding labels...');
+      logger.displayStdout(labelsToAdd);
+      await addLabels(issueNumber, labelsToAdd, octokit, context);
+    }
+    logger.endProcess();
 
-  logger.info('Removed count: %d', labelsToRemove.length);
-  logger.info('Added count: %d', labelsToAdd.length);
-  return true;
+    logger.info('Removed count: %d', labelsToRemove.length);
+    logger.info('Added count: %d', labelsToAdd.length);
+    return true;
+  } catch (error) {
+    if (!isProjectConfigRequired() && error instanceof ProjectNotFoundError) {
+      logger.endProcess();
+      logger.warn(error.message);
+      return true;
+    }
+
+    throw error;
+  }
 };
