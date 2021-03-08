@@ -3,7 +3,7 @@ import nock from 'nock';
 import path from 'path';
 import {isTargetEvent} from '@technote-space/filter-github-action';
 import {testEnv, disableNetConnect, getApiFixture, getContext, getOctokit} from '@technote-space/github-action-test-helper';
-import {getProjectName, getColumnName, getConfigFilename} from '../../src/utils/misc';
+import {getProjectName, getColumnName, getConfigFilename, findMatched} from '../../src/utils/misc';
 import {TARGET_EVENTS} from '../../src/constant';
 
 const rootDir = path.resolve(__dirname, '../..');
@@ -113,5 +113,20 @@ describe('getConfigFilename', () => {
 
   it('should get default config filename', () => {
     expect(getConfigFilename()).toBe('card-labeler.yml');
+  });
+});
+
+describe('findMatched', () => {
+  it('should return matched item', () => {
+    expect(findMatched(['a', '.+'], '', 'test1')).toBe('.+');
+    expect(findMatched(['a', 'test\\d'], '', 'test1')).toBe('test\\d');
+    expect(findMatched(['a', 'Test\\d'], 'i', 'test1')).toBe('Test\\d');
+    expect(findMatched(['*', 'Test\\d'], 'i', 'test1')).toBe('Test\\d');
+  });
+
+  it('should return undefined', () => {
+    expect(findMatched(['a', 'test\\d'], '', 'test')).toBeUndefined();
+    expect(findMatched(['a', 'Test\\d'], '', 'test1')).toBeUndefined();
+    expect(findMatched(['*', 'Test\\d'], '', 'test1')).toBeUndefined();
   });
 });

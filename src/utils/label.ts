@@ -1,25 +1,54 @@
 import {flatMap, uniq, difference, intersection} from 'lodash';
+import {ProjectNotFoundError} from '../errors';
+import {isRegexpSearchProject, getRegexpSearchProjectFlags, isRegexpSearchColumn, getRegexpSearchColumnFlags, findMatched} from './misc';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getProjectConfig = (config: { [key: string]: any }, project: string): any => {
+type ProjectConfigType = {
+  [key: string]: string | string[];
+};
+type ConfigType = {
+  [key: string]: ProjectConfigType;
+};
+
+const getProjectConfig = (config: ConfigType, project: string): ProjectConfigType => {
   if (project in config) {
     return config[project];
   }
 
-  throw new Error(`project [${project}] is not found.`);
+  if (isRegexpSearchProject()) {
+    const key = findMatched(Object.keys(config), getRegexpSearchProjectFlags(), project);
+    if (key) {
+      return config[key];
+    }
+  }
+
+  throw new ProjectNotFoundError(`project [${project}] is not found.`);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getLabels = (config: { [key: string]: any }, project: string, column: string): string[] => {
+const extractLabels = (config: ProjectConfigType, column: string): string[] => {
+  if (typeof config[column] === 'string') {
+    return [config[column] as string];
+  }
+
+  return uniq(Object.values(config[column]));
+};
+const getLabels     = (config: ConfigType, project: string, column: string): string[] => {
   const projectConfig = getProjectConfig(config, project);
-  return column in projectConfig ? ('object' === typeof projectConfig[column] ? uniq(Object.values(projectConfig[column])) : [projectConfig[column]]) : [];
+  if (column in projectConfig) {
+    return extractLabels(projectConfig, column);
+  }
+
+  if (isRegexpSearchColumn()) {
+    const key = findMatched(Object.keys(projectConfig), getRegexpSearchColumnFlags(), column);
+    if (key) {
+      return extractLabels(projectConfig, key);
+    }
+  }
+
+  return [];
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getProjectLabels = (config: { [key: string]: any }, project: string): string[] => uniq(flatMap(Object.keys(getProjectConfig(config, project)), column => getLabels(config, project, column)));
+const getProjectLabels = (config: ConfigType, project: string): string[] => uniq(flatMap(Object.keys(getProjectConfig(config, project)), column => getLabels(config, project, column)));
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getAddLabels = (currentLabels: string[], project: string, column: string, config: { [key: string]: any }): string[] => difference(getLabels(config, project, column), currentLabels);
+export const getAddLabels = (currentLabels: string[], project: string, column: string, config: ConfigType): string[] => difference(getLabels(config, project, column), currentLabels);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getRemoveLabels = (currentLabels: string[], project: string, column: string, config: { [key: string]: any }): string[] => intersection(currentLabels, difference(getProjectLabels(config, project), getAddLabels([], project, column, config)));
+export const getRemoveLabels = (currentLabels: string[], project: string, column: string, config: ConfigType): string[] => intersection(currentLabels, difference(getProjectLabels(config, project), getAddLabels([], project, column, config)));
