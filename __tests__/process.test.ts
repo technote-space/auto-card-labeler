@@ -166,4 +166,63 @@ describe('execute', () => {
       '> Added count: 2',
     ]);
   });
+
+  it('should output warning', async() => {
+    process.env.INPUT_CONFIG_FILENAME = 'config.yml';
+    const mockStdout                  = spyOnStdout();
+    nock('https://api.github.com')
+      .get(`/repos/hello/world/contents/${encodeURIComponent('.github/config.yml')}`)
+      .reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures', 'add'), 'config.yml'))
+      .get('/projects/columns/cards/1')
+      .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures', 'add'), 'projects.columns.cards'))
+      .get('/projects/1')
+      .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures'), 'projects.get2'))
+      .get('/projects/columns/1')
+      .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures'), 'projects.columns'))
+      .get('/repos/hello/world/issues/1/labels')
+      .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures', 'add'), 'repos.issues.labels'));
+
+    expect(await execute(logger, octokit, context)).toBe(true);
+
+    stdoutCalledWith(mockStdout, [
+      '::group::Getting card related info...',
+      '> Getting project name... 1',
+      '  >> Backlog2',
+      '> Getting column name... 1',
+      '  >> To Do',
+      '::endgroup::',
+      '::group::Getting current labels...',
+      '::endgroup::',
+      '::warning::project [Backlog2] is not found.',
+    ]);
+  });
+
+  it('should throw error', async() => {
+    process.env.INPUT_CONFIG_FILENAME            = 'config.yml';
+    process.env.INPUT_PROJECT_CONFIG_IS_REQUIRED = 'true';
+    const mockStdout                             = spyOnStdout();
+    nock('https://api.github.com')
+      .get(`/repos/hello/world/contents/${encodeURIComponent('.github/config.yml')}`)
+      .reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures', 'add'), 'config.yml'))
+      .get('/projects/columns/cards/1')
+      .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures', 'add'), 'projects.columns.cards'))
+      .get('/projects/1')
+      .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures'), 'projects.get2'))
+      .get('/projects/columns/1')
+      .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures'), 'projects.columns'))
+      .get('/repos/hello/world/issues/1/labels')
+      .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures', 'add'), 'repos.issues.labels'));
+
+    await expect(execute(logger, octokit, context)).rejects.toThrow('project [Backlog2] is not found.');
+
+    stdoutCalledWith(mockStdout, [
+      '::group::Getting card related info...',
+      '> Getting project name... 1',
+      '  >> Backlog2',
+      '> Getting column name... 1',
+      '  >> To Do',
+      '::endgroup::',
+      '::group::Getting current labels...',
+    ]);
+  });
 });

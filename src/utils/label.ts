@@ -1,4 +1,5 @@
 import {flatMap, uniq, difference, intersection} from 'lodash';
+import {ProjectNotFoundError} from '../errors';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getProjectConfig = (config: { [key: string]: any }, project: string): any => {
@@ -6,7 +7,7 @@ const getProjectConfig = (config: { [key: string]: any }, project: string): any 
     return config[project];
   }
 
-  throw new Error(`project [${project}] is not found.`);
+  throw new ProjectNotFoundError(`project [${project}] is not found.`);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
