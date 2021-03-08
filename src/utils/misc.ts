@@ -10,7 +10,17 @@ export const getConfigFilename = (): string => getInput('CONFIG_FILENAME', {requ
 
 export const isProjectConfigRequired = (): boolean => Utils.getBoolValue(getInput('PROJECT_CONFIG_IS_REQUIRED'));
 
-export const isRegexpSearchProject = (): boolean => Utils.getBoolValue(getInput('SEARCH_PROJECT_BY_REGEXP'));
+export const isRegexpSearchProject       = (): boolean => Utils.getBoolValue(getInput('SEARCH_PROJECT_BY_REGEXP'));
 export const getRegexpSearchProjectFlags = (): string => getInput('SEARCH_PROJECT_REGEXP_FLAGS');
-export const isRegexpSearchColumn  = (): boolean => Utils.getBoolValue(getInput('SEARCH_COLUMN_BY_REGEXP'));
-export const getRegexpSearchColumnFlags = (): string => getInput('SEARCH_COLUMN_REGEXP_FLAGS');
+export const isRegexpSearchColumn        = (): boolean => Utils.getBoolValue(getInput('SEARCH_COLUMN_BY_REGEXP'));
+export const getRegexpSearchColumnFlags  = (): string => getInput('SEARCH_COLUMN_REGEXP_FLAGS');
+
+export const findMatched = (items: string[], flags: string, string: string): string | undefined => {
+  return items.find(item => {
+    try {
+      return (new RegExp(item, flags)).test(string);
+    } catch {
+      return false;
+    }
+  });
+};

@@ -1,6 +1,6 @@
 import {flatMap, uniq, difference, intersection} from 'lodash';
 import {ProjectNotFoundError} from '../errors';
-import {isRegexpSearchProject, getRegexpSearchProjectFlags, isRegexpSearchColumn, getRegexpSearchColumnFlags} from './misc';
+import {isRegexpSearchProject, getRegexpSearchProjectFlags, isRegexpSearchColumn, getRegexpSearchColumnFlags, findMatched} from './misc';
 
 type ProjectConfigType = {
   [key: string]: string | string[];
@@ -15,7 +15,7 @@ const getProjectConfig = (config: ConfigType, project: string): ProjectConfigTyp
   }
 
   if (isRegexpSearchProject()) {
-    const key = Object.keys(config).find(key => new RegExp(key, getRegexpSearchProjectFlags()).test(project));
+    const key = findMatched(Object.keys(config), getRegexpSearchProjectFlags(), project);
     if (key) {
       return config[key];
     }
@@ -38,7 +38,7 @@ const getLabels     = (config: ConfigType, project: string, column: string): str
   }
 
   if (isRegexpSearchColumn()) {
-    const key = Object.keys(projectConfig).find(key => new RegExp(key, getRegexpSearchColumnFlags()).test(column));
+    const key = findMatched(Object.keys(projectConfig), getRegexpSearchColumnFlags(), column);
     if (key) {
       return extractLabels(projectConfig, key);
     }
