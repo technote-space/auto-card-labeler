@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/github-action-config-helper",
-  "version": "2.0.25",
+  "version": "2.0.26",
   "description": "Helper for GitHub Action to manage config.",
   "keywords": [
     "github",
@@ -40,10 +40,10 @@
     "js-yaml": "^4.0.0"
   },
   "devDependencies": {
-    "@technote-space/github-action-test-helper": "^0.7.3",
+    "@technote-space/github-action-test-helper": "^0.7.4",
     "@types/jest": "^26.0.20",
     "@types/js-yaml": "^4.0.0",
-    "@types/node": "^14.14.32",
+    "@types/node": "^14.14.33",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
     "eslint": "^7.21.0",
