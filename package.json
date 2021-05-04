@@ -42,7 +42,7 @@
     "@actions/github": "^4.0.0",
     "@technote-space/filter-github-action": "^0.5.24",
     "@technote-space/github-action-config-helper": "^2.0.27",
-    "@technote-space/github-action-helper": "^5.2.6",
+    "@technote-space/github-action-helper": "^5.2.7",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
