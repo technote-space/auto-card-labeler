@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/github-action-config-helper",
-  "version": "2.0.30",
+  "version": "2.0.31",
   "description": "Helper for GitHub Action to manage config.",
   "keywords": [
     "github",
@@ -35,21 +35,21 @@
   },
   "dependencies": {
     "@actions/github": "^5.0.0",
-    "@octokit/plugin-rest-endpoint-methods": "^5.3.7",
-    "@technote-space/github-action-helper": "^5.2.10",
+    "@octokit/plugin-rest-endpoint-methods": "^5.4.1",
+    "@technote-space/github-action-helper": "^5.2.13",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@technote-space/github-action-test-helper": "^0.7.15",
-    "@types/jest": "^26.0.23",
-    "@types/js-yaml": "^4.0.1",
-    "@types/node": "^15.14.0",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
-    "eslint": "^7.29.0",
+    "@technote-space/github-action-test-helper": "^0.7.17",
+    "@types/jest": "^26.0.24",
+    "@types/js-yaml": "^4.0.2",
+    "@types/node": "^16.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint": "^7.31.0",
     "jest": "^27.0.6",
     "jest-circus": "^27.0.6",
-    "nock": "^13.1.0",
+    "nock": "^13.1.1",
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.5"
   },
