@@ -22,7 +22,6 @@ This is a `GitHub Actions` that automatically labels Issues or PullRequests base
 - [Options](#options)
 - [Action event details](#action-event-details)
   - [Target event](#target-event)
-- [Example Repositories using this action](#example-repositories-using-this-action)
 - [Author](#author)
 
 </details>
