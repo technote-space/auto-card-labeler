@@ -1,9 +1,9 @@
 # Auto card labeler
 
 [![CI Status](https://github.com/technote-space/auto-card-labeler/workflows/CI/badge.svg)](https://github.com/technote-space/auto-card-labeler/actions)
-[![Coverage Status](https://coveralls.io/repos/github/technote-space/auto-card-labeler/badge.svg?branch=master)](https://coveralls.io/github/technote-space/auto-card-labeler?branch=master)
+[![codecov](https://codecov.io/gh/technote-space/auto-card-labeler/branch/main/graph/badge.svg)](https://codecov.io/gh/technote-space/auto-card-labeler)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/auto-card-labeler/badge)](https://www.codefactor.io/repository/github/technote-space/auto-card-labeler)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/auto-card-labeler/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/auto-card-labeler/blob/main/LICENSE)
 
 *Read this in other languages: [English](README.md), [日本語](README.ja.md).*
 
@@ -22,7 +22,6 @@
 - [オプション](#%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3)
 - [Action イベント詳細](#action-%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E8%A9%B3%E7%B4%B0)
   - [対象イベント](#%E5%AF%BE%E8%B1%A1%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)
-- [このアクションを使用しているリポジトリの例](#%E3%81%93%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E4%BE%8B)
 - [Author](#author)
 
 </details>
@@ -114,24 +113,6 @@ Project name1:
 |:---:|:---:|
 |project_card|moved|
 |project_card|created|
-
-## このアクションを使用しているリポジトリの例
-- [Release GitHub Actions](https://github.com/technote-space/release-github-actions)
-  - [project-card-moved.yml](https://github.com/technote-space/release-github-actions/blob/master/.github/workflows/project-card-moved.yml)
-- [Auto card labeler](https://github.com/technote-space/auto-card-labeler)
-  - [project-card-moved.yml](https://github.com/technote-space/auto-card-labeler/blob/master/.github/workflows/project-card-moved.yml)
-- [Assign Author](https://github.com/technote-space/assign-author)
-  - [project-card-moved.yml](https://github.com/technote-space/assign-author/blob/master/.github/workflows/project-card-moved.yml)
-- [TOC Generator](https://github.com/technote-space/toc-generator)
-  - [project-card-moved.yml](https://github.com/technote-space/toc-generator/blob/master/.github/workflows/project-card-moved.yml)
-- [Package Version Check Action](https://github.com/technote-space/package-version-check-action)
-  - [project-card-moved.yml](https://github.com/technote-space/package-version-check-action/blob/master/.github/workflows/project-card-moved.yml)
-- [Get Diff Action](https://github.com/technote-space/get-diff-action)
-  - [project-card-moved.yml](https://github.com/technote-space/get-diff-action/blob/master/.github/workflows/project-card-moved.yml)
-- [Create Project Card Action](https://github.com/technote-space/create-project-card-action)
-  - [project-card-moved.yml](https://github.com/technote-space/create-project-card-action/blob/master/.github/workflows/project-card-moved.yml)
-- [Get git comment action](https://github.com/technote-space/get-git-comment-action)
-  - [project-card-moved.yml](https://github.com/technote-space/get-git-comment-action/blob/master/.github/workflows/project-card-moved.yml)
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  

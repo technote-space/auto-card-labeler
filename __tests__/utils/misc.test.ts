@@ -66,7 +66,7 @@ describe('getProjectName', () => {
 
     try {
       await getProjectName(1, octokit);
-    } catch (error) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       fn();
       expect(error).toHaveProperty('status');
       expect(error.status).toBe(404);
@@ -94,7 +94,7 @@ describe('getColumnName', () => {
 
     try {
       await getColumnName(1, octokit);
-    } catch (error) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       fn();
       expect(error).toHaveProperty('status');
       expect(error.status).toBe(404);

@@ -34,7 +34,7 @@ export const getRelatedInfo = async(payload: { [key: string]: any }, octokit: Oc
       projectId: extractProjectNumber(data['project_url']),
       issueNumber: extractIssueNumber(ensureNotNull(data['content_url'])),
     };
-  } catch (error) {
+  } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     console.log(error);
     // eslint-disable-next-line no-magic-numbers
     if (error.status === 404) {
