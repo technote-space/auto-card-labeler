@@ -44,7 +44,7 @@ describe('getRelatedInfo', () => {
     const fn = jest.fn();
     try {
       await getRelatedInfo({'project_card': {id: 1}}, octokit);
-    } catch (error) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       fn();
       expect(error).toHaveProperty('message');
       expect(error.message).toBe('Failed to get project number');
@@ -60,7 +60,7 @@ describe('getRelatedInfo', () => {
     const fn = jest.fn();
     try {
       await getRelatedInfo({'project_card': {id: 1}}, octokit);
-    } catch (error) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       fn();
       expect(error).toHaveProperty('message');
       expect(error.message).toBe('Failed to get issue number');
