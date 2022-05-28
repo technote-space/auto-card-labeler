@@ -46,7 +46,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.0",
+    "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@technote-space/github-action-test-helper": "^0.9.5",
     "@technote-space/release-github-actions-cli": "^1.9.0",
@@ -59,11 +59,11 @@
     "husky": "^8.0.1",
     "jest": "^28.1.0",
     "jest-circus": "^28.1.0",
-    "lint-staged": "^12.4.1",
+    "lint-staged": "^12.4.2",
     "nock": "^13.2.4",
     "pinst": "^3.0.0",
-    "ts-jest": "^28.0.2",
-    "typescript": "^4.6.4"
+    "ts-jest": "^28.0.3",
+    "typescript": "^4.7.2"
   },
   "publishConfig": {
     "access": "public"
