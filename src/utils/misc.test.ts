@@ -2,10 +2,10 @@
 import { describe, expect, it, vi } from 'vitest';
 import nock from 'nock';
 import path from 'path';
-import {isTargetEvent} from '@technote-space/filter-github-action';
-import {testEnv, disableNetConnect, getApiFixture, getContext, getOctokit} from '@technote-space/github-action-test-helper';
-import {getProjectName, getColumnName, getConfigFilename, findMatched} from '../../src/utils/misc';
-import {TARGET_EVENTS} from '../../src/constant';
+import { isTargetEvent } from '@technote-space/filter-github-action';
+import { testEnv, disableNetConnect, getApiFixture, getContext, getOctokit } from '@technote-space/github-action-test-helper';
+import { getProjectName, getColumnName, getConfigFilename, findMatched } from './misc';
+import { TARGET_EVENTS } from '../constant';
 
 const rootDir = path.resolve(__dirname, '../..');
 const octokit = getOctokit();

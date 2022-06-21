@@ -1,8 +1,8 @@
-import {Octokit} from '@technote-space/github-action-helper/dist/types';
-import {Context} from '@actions/github/lib/context';
-import {Utils} from '@technote-space/github-action-helper';
+import { Octokit } from '@technote-space/github-action-helper/dist/types';
+import { Context } from '@actions/github/lib/context';
+import { Utils } from '@technote-space/github-action-helper';
 
-const {ensureNotNull} = Utils;
+const { ensureNotNull } = Utils;
 
 const extractProjectNumber = (url: string): number => {
   const match = url.match(/projects\/(\d+)$/);
@@ -25,7 +25,7 @@ const extractIssueNumber = (url: string): number => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getRelatedInfo = async(payload: { [key: string]: any }, octokit: Octokit): Promise<{ projectId: number; issueNumber: number } | false> => {
   try {
-    const {data} = await octokit.rest.projects.getCard({'card_id': payload['project_card'].id});
+    const { data } = await octokit.rest.projects.getCard({ 'card_id': payload['project_card'].id });
     if (!('content_url' in data)) {
       return false;
     }

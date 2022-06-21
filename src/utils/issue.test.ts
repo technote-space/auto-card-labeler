@@ -2,8 +2,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import nock from 'nock';
 import path from 'path';
-import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
-import {disableNetConnect, getApiFixture, getContext, getOctokit} from '@technote-space/github-action-test-helper';
+import { getRelatedInfo, getLabels, removeLabels, addLabels } from './issue';
+import { disableNetConnect, getApiFixture, getContext, getOctokit } from '@technote-space/github-action-test-helper';
 
 const octokit = getOctokit();
 
@@ -15,7 +15,7 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards'));
 
-    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toEqual({
+    expect(await getRelatedInfo({ 'project_card': { id: 1 } }, octokit)).toEqual({
       projectId: 120,
       issueNumber: 123,
     });
@@ -26,7 +26,7 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error1'));
 
-    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toBe(false);
+    expect(await getRelatedInfo({ 'project_card': { id: 1 } }, octokit)).toBe(false);
   });
 
   it('should not get related info 2', async() => {
@@ -34,7 +34,7 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(404);
 
-    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toBe(false);
+    expect(await getRelatedInfo({ 'project_card': { id: 1 } }, octokit)).toBe(false);
   });
 
   it('should throw project error', async() => {
@@ -44,7 +44,7 @@ describe('getRelatedInfo', () => {
 
     const fn = vi.fn();
     try {
-      await getRelatedInfo({'project_card': {id: 1}}, octokit);
+      await getRelatedInfo({ 'project_card': { id: 1 } }, octokit);
     } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       fn();
       expect(error).toHaveProperty('message');
@@ -60,7 +60,7 @@ describe('getRelatedInfo', () => {
 
     const fn = vi.fn();
     try {
-      await getRelatedInfo({'project_card': {id: 1}}, octokit);
+      await getRelatedInfo({ 'project_card': { id: 1 } }, octokit);
     } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       fn();
       expect(error).toHaveProperty('message');

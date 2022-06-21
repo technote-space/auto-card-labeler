@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import path from 'path';
 import nock from 'nock';
-import {Logger} from '@technote-space/github-action-log-helper';
+import { Logger } from '@technote-space/github-action-log-helper';
 import {
   testEnv,
   generateContext,
@@ -13,7 +13,7 @@ import {
   getApiFixture,
   getOctokit,
 } from '@technote-space/github-action-test-helper';
-import {execute} from '../src/process';
+import { execute } from './process';
 
 const logger  = new Logger();
 const octokit = getOctokit();

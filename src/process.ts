@@ -1,11 +1,11 @@
-import {getConfig} from '@technote-space/github-action-config-helper';
-import {Octokit} from '@technote-space/github-action-helper/dist/types';
-import {Context} from '@actions/github/lib/context';
-import {Logger} from '@technote-space/github-action-log-helper';
-import {addLabels, getLabels, getRelatedInfo, removeLabels} from './utils/issue';
-import {getAddLabels, getRemoveLabels} from './utils/label';
-import {getColumnName, getConfigFilename, getProjectName, isProjectConfigRequired} from './utils/misc';
-import {ProjectNotFoundError} from './errors';
+import { getConfig } from '@technote-space/github-action-config-helper';
+import { Octokit } from '@technote-space/github-action-helper/dist/types';
+import { Context } from '@actions/github/lib/context';
+import { Logger } from '@technote-space/github-action-log-helper';
+import { addLabels, getLabels, getRelatedInfo, removeLabels } from './utils/issue';
+import { getAddLabels, getRemoveLabels } from './utils/label';
+import { getColumnName, getConfigFilename, getProjectName, isProjectConfigRequired } from './utils/misc';
+import { ProjectNotFoundError } from './errors';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<boolean> => {
   const config = await getConfig(getConfigFilename(), octokit, context);
@@ -23,7 +23,7 @@ export const execute = async(logger: Logger, octokit: Octokit, context: Context)
     return false;
   }
 
-  const {projectId, issueNumber} = info;
+  const { projectId, issueNumber } = info;
   logger.info('Getting project name... %d', projectId);
   const project = await getProjectName(projectId, octokit);
   logger.displayStdout(project);

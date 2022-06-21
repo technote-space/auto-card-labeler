@@ -1,6 +1,6 @@
-import {flatMap, uniq, difference, intersection} from 'lodash';
-import {ProjectNotFoundError} from '../errors';
-import {isRegexpSearchProject, getRegexpSearchProjectFlags, isRegexpSearchColumn, getRegexpSearchColumnFlags, findMatched} from './misc';
+import { flatMap, uniq, difference, intersection } from 'lodash';
+import { ProjectNotFoundError } from '../errors';
+import { isRegexpSearchProject, getRegexpSearchProjectFlags, isRegexpSearchColumn, getRegexpSearchColumnFlags, findMatched } from './misc';
 
 type ProjectConfigType = {
   [key: string]: string | string[];
