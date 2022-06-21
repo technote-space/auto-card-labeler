@@ -1,4 +1,5 @@
 /* eslint-disable no-magic-numbers */
+import { describe, expect, it, vi } from 'vitest';
 import nock from 'nock';
 import path from 'path';
 import {isTargetEvent} from '@technote-space/filter-github-action';
@@ -62,7 +63,7 @@ describe('getProjectName', () => {
     nock('https://api.github.com')
       .get('/projects/1')
       .reply(404);
-    const fn = jest.fn();
+    const fn = vi.fn();
 
     try {
       await getProjectName(1, octokit);
@@ -90,7 +91,7 @@ describe('getColumnName', () => {
     nock('https://api.github.com')
       .get('/projects/columns/1')
       .reply(404);
-    const fn = jest.fn();
+    const fn = vi.fn();
 
     try {
       await getColumnName(1, octokit);

@@ -1,4 +1,5 @@
 /* eslint-disable no-magic-numbers */
+import { describe, expect, it } from 'vitest';
 import {getRemoveLabels, getAddLabels} from '../../src/utils/label';
 
 const config = {

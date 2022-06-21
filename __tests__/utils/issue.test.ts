@@ -1,4 +1,5 @@
 /* eslint-disable no-magic-numbers */
+import { describe, expect, it, vi } from 'vitest';
 import nock from 'nock';
 import path from 'path';
 import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
@@ -41,7 +42,7 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error2'));
 
-    const fn = jest.fn();
+    const fn = vi.fn();
     try {
       await getRelatedInfo({'project_card': {id: 1}}, octokit);
     } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -57,7 +58,7 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error3'));
 
-    const fn = jest.fn();
+    const fn = vi.fn();
     try {
       await getRelatedInfo({'project_card': {id: 1}}, octokit);
     } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -90,8 +91,8 @@ describe('removeLabels', () => {
   disableNetConnect(nock);
 
   it('should remove labels', async() => {
-    const fn1 = jest.fn();
-    const fn2 = jest.fn();
+    const fn1 = vi.fn();
+    const fn2 = vi.fn();
     nock('https://api.github.com')
       .delete('/repos/Codertocat/Hello-World/issues/1/labels/remove1')
       .reply(200, (uri, body) => {
@@ -123,8 +124,8 @@ describe('addLabels', () => {
   disableNetConnect(nock);
 
   it('should add labels', async() => {
-    const fn1 = jest.fn();
-    const fn2 = jest.fn();
+    const fn1 = vi.fn();
+    const fn2 = vi.fn();
     nock('https://api.github.com')
       .post('/repos/Codertocat/Hello-World/issues/1/labels', body => {
         fn1();

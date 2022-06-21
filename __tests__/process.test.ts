@@ -1,4 +1,5 @@
 /* eslint-disable no-magic-numbers */
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import path from 'path';
 import nock from 'nock';
 import {Logger} from '@technote-space/github-action-log-helper';
@@ -76,8 +77,8 @@ describe('execute', () => {
   it('should remove labels', async() => {
     process.env.INPUT_CONFIG_FILENAME = 'config.yml';
     const mockStdout                  = spyOnStdout();
-    const fn1                         = jest.fn();
-    const fn2                         = jest.fn();
+    const fn1                         = vi.fn();
+    const fn2                         = vi.fn();
     nock('https://api.github.com')
       .get(`/repos/hello/world/contents/${encodeURIComponent('.github/config.yml')}`)
       .reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures', 'remove'), 'config.yml'))
@@ -125,7 +126,7 @@ describe('execute', () => {
   it('should add labels', async() => {
     process.env.INPUT_CONFIG_FILENAME = 'config.yml';
     const mockStdout                  = spyOnStdout();
-    const fn                          = jest.fn();
+    const fn                          = vi.fn();
     nock('https://api.github.com')
       .get(`/repos/hello/world/contents/${encodeURIComponent('.github/config.yml')}`)
       .reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures', 'add'), 'config.yml'))
