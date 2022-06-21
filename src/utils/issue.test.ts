@@ -95,12 +95,12 @@ describe('removeLabels', () => {
     const fn2 = vi.fn();
     nock('https://api.github.com')
       .delete('/repos/Codertocat/Hello-World/issues/1/labels/remove1')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn1();
         return body;
       })
       .delete('/repos/Codertocat/Hello-World/issues/1/labels/remove2')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn2();
         return body;
       });
@@ -134,7 +134,7 @@ describe('addLabels', () => {
         });
         return body;
       })
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn2();
         return body;
       });

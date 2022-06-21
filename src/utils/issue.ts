@@ -8,7 +8,7 @@ const extractProjectNumber = (url: string): number => {
     throw new Error('Failed to get project number');
   }
 
-  return parseInt(match[1], 10);
+  return parseInt(match[1]!, 10);
 };
 
 const extractIssueNumber = (url: string): number => {
@@ -17,7 +17,7 @@ const extractIssueNumber = (url: string): number => {
     throw new Error('Failed to get issue number');
   }
 
-  return parseInt(match[1], 10);
+  return parseInt(match[1]!, 10);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

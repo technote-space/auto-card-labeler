@@ -11,13 +11,13 @@ type ConfigType = {
 
 const getProjectConfig = (config: ConfigType, project: string): ProjectConfigType => {
   if (project in config) {
-    return config[project];
+    return config[project]!;
   }
 
   if (isRegexpSearchProject()) {
     const key = findMatched(Object.keys(config), getRegexpSearchProjectFlags(), project);
     if (key) {
-      return config[key];
+      return config[key]!;
     }
   }
 
@@ -29,7 +29,7 @@ const extractLabels = (config: ProjectConfigType, column: string): string[] => {
     return [config[column] as string];
   }
 
-  return Utils.uniqueArray(Object.values(config[column]));
+  return Utils.uniqueArray(Object.values(config[column]!));
 };
 const getLabels     = (config: ConfigType, project: string, column: string): string[] => {
   const projectConfig = getProjectConfig(config, project);

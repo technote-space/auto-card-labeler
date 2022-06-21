@@ -91,12 +91,12 @@ describe('execute', () => {
       .get('/repos/hello/world/issues/1/labels')
       .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures', 'remove'), 'repos.issues.labels'))
       .delete('/repos/hello/world/issues/1/labels/remove1')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn1();
         return body;
       })
       .delete('/repos/hello/world/issues/1/labels/remove2')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn2();
         return body;
       });
@@ -139,7 +139,7 @@ describe('execute', () => {
       .get('/repos/hello/world/issues/1/labels')
       .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures', 'add'), 'repos.issues.labels'))
       .post('/repos/hello/world/issues/1/labels')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn();
         expect(body).toEqual({
           labels: ['add1', 'add2'],
