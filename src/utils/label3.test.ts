@@ -1,6 +1,7 @@
 /* eslint-disable no-magic-numbers */
-import {testEnv} from '@technote-space/github-action-test-helper';
-import {getRemoveLabels, getAddLabels} from '../../src/utils/label';
+import { testEnv } from '@technote-space/github-action-test-helper';
+import { describe, expect, it } from 'vitest';
+import { getRemoveLabels, getAddLabels } from './label';
 
 const config = {
   'Project\\d': {

@@ -1,5 +1,6 @@
 /* eslint-disable no-magic-numbers */
-import {getRemoveLabels, getAddLabels} from '../../src/utils/label';
+import { describe, expect, it } from 'vitest';
+import { getRemoveLabels, getAddLabels } from './label';
 
 const config = {
   project1: {

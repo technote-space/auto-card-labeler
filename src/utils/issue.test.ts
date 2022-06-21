@@ -1,8 +1,9 @@
 /* eslint-disable no-magic-numbers */
-import nock from 'nock';
 import path from 'path';
-import {getRelatedInfo, getLabels, removeLabels, addLabels} from '../../src/utils/issue';
-import {disableNetConnect, getApiFixture, getContext, getOctokit} from '@technote-space/github-action-test-helper';
+import { disableNetConnect, getApiFixture, getContext, getOctokit } from '@technote-space/github-action-test-helper';
+import nock from 'nock';
+import { describe, expect, it, vi } from 'vitest';
+import { getRelatedInfo, getLabels, removeLabels, addLabels } from './issue';
 
 const octokit = getOctokit();
 
@@ -14,7 +15,7 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards'));
 
-    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toEqual({
+    expect(await getRelatedInfo({ 'project_card': { id: 1 } }, octokit)).toEqual({
       projectId: 120,
       issueNumber: 123,
     });
@@ -25,7 +26,7 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error1'));
 
-    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toBe(false);
+    expect(await getRelatedInfo({ 'project_card': { id: 1 } }, octokit)).toBe(false);
   });
 
   it('should not get related info 2', async() => {
@@ -33,7 +34,7 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(404);
 
-    expect(await getRelatedInfo({'project_card': {id: 1}}, octokit)).toBe(false);
+    expect(await getRelatedInfo({ 'project_card': { id: 1 } }, octokit)).toBe(false);
   });
 
   it('should throw project error', async() => {
@@ -41,9 +42,9 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error2'));
 
-    const fn = jest.fn();
+    const fn = vi.fn();
     try {
-      await getRelatedInfo({'project_card': {id: 1}}, octokit);
+      await getRelatedInfo({ 'project_card': { id: 1 } }, octokit);
     } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       fn();
       expect(error).toHaveProperty('message');
@@ -57,9 +58,9 @@ describe('getRelatedInfo', () => {
       .get('/projects/columns/cards/1')
       .reply(200, getApiFixture(path.resolve(__dirname, '..', 'fixtures'), 'projects.columns.cards.error3'));
 
-    const fn = jest.fn();
+    const fn = vi.fn();
     try {
-      await getRelatedInfo({'project_card': {id: 1}}, octokit);
+      await getRelatedInfo({ 'project_card': { id: 1 } }, octokit);
     } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       fn();
       expect(error).toHaveProperty('message');
@@ -90,16 +91,16 @@ describe('removeLabels', () => {
   disableNetConnect(nock);
 
   it('should remove labels', async() => {
-    const fn1 = jest.fn();
-    const fn2 = jest.fn();
+    const fn1 = vi.fn();
+    const fn2 = vi.fn();
     nock('https://api.github.com')
       .delete('/repos/Codertocat/Hello-World/issues/1/labels/remove1')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn1();
         return body;
       })
       .delete('/repos/Codertocat/Hello-World/issues/1/labels/remove2')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn2();
         return body;
       });
@@ -123,8 +124,8 @@ describe('addLabels', () => {
   disableNetConnect(nock);
 
   it('should add labels', async() => {
-    const fn1 = jest.fn();
-    const fn2 = jest.fn();
+    const fn1 = vi.fn();
+    const fn2 = vi.fn();
     nock('https://api.github.com')
       .post('/repos/Codertocat/Hello-World/issues/1/labels', body => {
         fn1();
@@ -133,7 +134,7 @@ describe('addLabels', () => {
         });
         return body;
       })
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn2();
         return body;
       });

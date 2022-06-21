@@ -1,10 +1,11 @@
 /* eslint-disable no-magic-numbers */
-import nock from 'nock';
 import path from 'path';
-import {isTargetEvent} from '@technote-space/filter-github-action';
-import {testEnv, disableNetConnect, getApiFixture, getContext, getOctokit} from '@technote-space/github-action-test-helper';
-import {getProjectName, getColumnName, getConfigFilename, findMatched} from '../../src/utils/misc';
-import {TARGET_EVENTS} from '../../src/constant';
+import { isTargetEvent } from '@technote-space/filter-github-action';
+import { testEnv, disableNetConnect, getApiFixture, getContext, getOctokit } from '@technote-space/github-action-test-helper';
+import nock from 'nock';
+import { describe, expect, it, vi } from 'vitest';
+import { TARGET_EVENTS } from '../constant';
+import { getProjectName, getColumnName, getConfigFilename, findMatched } from './misc';
 
 const rootDir = path.resolve(__dirname, '../..');
 const octokit = getOctokit();
@@ -62,7 +63,7 @@ describe('getProjectName', () => {
     nock('https://api.github.com')
       .get('/projects/1')
       .reply(404);
-    const fn = jest.fn();
+    const fn = vi.fn();
 
     try {
       await getProjectName(1, octokit);
@@ -90,7 +91,7 @@ describe('getColumnName', () => {
     nock('https://api.github.com')
       .get('/projects/columns/1')
       .reply(404);
-    const fn = jest.fn();
+    const fn = vi.fn();
 
     try {
       await getColumnName(1, octokit);

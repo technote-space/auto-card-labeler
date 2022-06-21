@@ -1,8 +1,6 @@
-import {Octokit} from '@technote-space/github-action-helper/dist/types';
-import {Context} from '@actions/github/lib/context';
-import {Utils} from '@technote-space/github-action-helper';
-
-const {ensureNotNull} = Utils;
+import type { Context } from '@actions/github/lib/context';
+import type { Octokit } from '@technote-space/github-action-helper/dist/types';
+import { Utils } from '@technote-space/github-action-helper';
 
 const extractProjectNumber = (url: string): number => {
   const match = url.match(/projects\/(\d+)$/);
@@ -10,7 +8,7 @@ const extractProjectNumber = (url: string): number => {
     throw new Error('Failed to get project number');
   }
 
-  return parseInt(match[1], 10);
+  return parseInt(match[1]!, 10);
 };
 
 const extractIssueNumber = (url: string): number => {
@@ -19,20 +17,20 @@ const extractIssueNumber = (url: string): number => {
     throw new Error('Failed to get issue number');
   }
 
-  return parseInt(match[1], 10);
+  return parseInt(match[1]!, 10);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getRelatedInfo = async(payload: { [key: string]: any }, octokit: Octokit): Promise<{ projectId: number; issueNumber: number } | false> => {
   try {
-    const {data} = await octokit.rest.projects.getCard({'card_id': payload['project_card'].id});
+    const { data } = await octokit.rest.projects.getCard({ 'card_id': payload['project_card'].id });
     if (!('content_url' in data)) {
       return false;
     }
 
     return {
       projectId: extractProjectNumber(data['project_url']),
-      issueNumber: extractIssueNumber(ensureNotNull(data['content_url'])),
+      issueNumber: extractIssueNumber(Utils.ensureNotNull(data['content_url'])),
     };
   } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     console.log(error);

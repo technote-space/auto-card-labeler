@@ -1,7 +1,6 @@
 /* eslint-disable no-magic-numbers */
 import path from 'path';
-import nock from 'nock';
-import {Logger} from '@technote-space/github-action-log-helper';
+import { Logger } from '@technote-space/github-action-log-helper';
 import {
   testEnv,
   generateContext,
@@ -12,7 +11,9 @@ import {
   getApiFixture,
   getOctokit,
 } from '@technote-space/github-action-test-helper';
-import {execute} from '../src/process';
+import nock from 'nock';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { execute } from './process';
 
 const logger  = new Logger();
 const octokit = getOctokit();
@@ -76,8 +77,8 @@ describe('execute', () => {
   it('should remove labels', async() => {
     process.env.INPUT_CONFIG_FILENAME = 'config.yml';
     const mockStdout                  = spyOnStdout();
-    const fn1                         = jest.fn();
-    const fn2                         = jest.fn();
+    const fn1                         = vi.fn();
+    const fn2                         = vi.fn();
     nock('https://api.github.com')
       .get(`/repos/hello/world/contents/${encodeURIComponent('.github/config.yml')}`)
       .reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures', 'remove'), 'config.yml'))
@@ -90,12 +91,12 @@ describe('execute', () => {
       .get('/repos/hello/world/issues/1/labels')
       .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures', 'remove'), 'repos.issues.labels'))
       .delete('/repos/hello/world/issues/1/labels/remove1')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn1();
         return body;
       })
       .delete('/repos/hello/world/issues/1/labels/remove2')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn2();
         return body;
       });
@@ -125,7 +126,7 @@ describe('execute', () => {
   it('should add labels', async() => {
     process.env.INPUT_CONFIG_FILENAME = 'config.yml';
     const mockStdout                  = spyOnStdout();
-    const fn                          = jest.fn();
+    const fn                          = vi.fn();
     nock('https://api.github.com')
       .get(`/repos/hello/world/contents/${encodeURIComponent('.github/config.yml')}`)
       .reply(200, getConfigFixture(path.resolve(__dirname, 'fixtures', 'add'), 'config.yml'))
@@ -138,7 +139,7 @@ describe('execute', () => {
       .get('/repos/hello/world/issues/1/labels')
       .reply(200, getApiFixture(path.resolve(__dirname, 'fixtures', 'add'), 'repos.issues.labels'))
       .post('/repos/hello/world/issues/1/labels')
-      .reply(200, (uri, body) => {
+      .reply(200, (_, body) => {
         fn();
         expect(body).toEqual({
           labels: ['add1', 'add2'],
