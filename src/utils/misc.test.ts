@@ -1,11 +1,11 @@
 /* eslint-disable no-magic-numbers */
-import { describe, expect, it, vi } from 'vitest';
-import nock from 'nock';
 import path from 'path';
 import { isTargetEvent } from '@technote-space/filter-github-action';
 import { testEnv, disableNetConnect, getApiFixture, getContext, getOctokit } from '@technote-space/github-action-test-helper';
-import { getProjectName, getColumnName, getConfigFilename, findMatched } from './misc';
+import nock from 'nock';
+import { describe, expect, it, vi } from 'vitest';
 import { TARGET_EVENTS } from '../constant';
+import { getProjectName, getColumnName, getConfigFilename, findMatched } from './misc';
 
 const rootDir = path.resolve(__dirname, '../..');
 const octokit = getOctokit();

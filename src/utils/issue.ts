@@ -1,5 +1,5 @@
-import type { Octokit } from '@technote-space/github-action-helper/dist/types';
 import type { Context } from '@actions/github/lib/context';
+import type { Octokit } from '@technote-space/github-action-helper/dist/types';
 import { Utils } from '@technote-space/github-action-helper';
 
 const extractProjectNumber = (url: string): number => {

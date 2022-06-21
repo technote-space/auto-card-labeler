@@ -1,11 +1,11 @@
-import { getConfig } from '@technote-space/github-action-config-helper';
-import type { Octokit } from '@technote-space/github-action-helper/dist/types';
 import type { Context } from '@actions/github/lib/context';
+import type { Octokit } from '@technote-space/github-action-helper/dist/types';
 import type { Logger } from '@technote-space/github-action-log-helper';
+import { getConfig } from '@technote-space/github-action-config-helper';
+import { ProjectNotFoundError } from './errors';
 import { addLabels, getLabels, getRelatedInfo, removeLabels } from './utils/issue';
 import { getAddLabels, getRemoveLabels } from './utils/label';
 import { getColumnName, getConfigFilename, getProjectName, isProjectConfigRequired } from './utils/misc';
-import { ProjectNotFoundError } from './errors';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<boolean> => {
   const config = await getConfig(getConfigFilename(), octokit, context);
