@@ -1,7 +1,7 @@
-declare type ProjectConfigType = {
+type ProjectConfigType = {
     [key: string]: string | string[];
 };
-declare type ConfigType = {
+type ConfigType = {
     [key: string]: ProjectConfigType;
 };
 export declare const getAddLabels: (currentLabels: string[], project: string, column: string, config: ConfigType) => string[];
